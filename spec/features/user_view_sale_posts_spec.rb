@@ -34,4 +34,15 @@ feature 'User views sale posts' do
       expect(page).to have_content("R$ #{sale_post_fogao.price},00")
     end
   end
+
+  scenario 'and no posts were created' do
+    disabled_user = User.create!(email: 'maria@coke.com.br', password: '123123')
+
+    login_as disabled_user
+    visit root_path
+
+    within 'div.posts-container' do
+      expect(page).to have_content('Não há anúncios cadastrados')
+    end
+  end
 end

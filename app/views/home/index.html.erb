@@ -1,4 +1,7 @@
 <div class="posts-container">
+  <% if @posts.empty? %>
+    <p>Não há anúncios cadastrados</p>
+  <% end %>
   <% @posts.each do |post| %>
     <%= post.title %>
     <%= number_to_currency post.price %>
