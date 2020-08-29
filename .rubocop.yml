@@ -36,6 +36,8 @@ Style/AndOr:
   Enabled: false
 Style/DefWithParentheses:
   Enabled: false
+Style/SymbolArray:
+  Enabled: false
 Style/FrozenStringLiteralComment:
   EnforcedStyle: never
 

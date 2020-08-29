@@ -6,5 +6,9 @@ pt-BR:
     attributes:
       user:
         name: Nome
+        social_name: Nome social
+        birth_date: Data de nascimento
+        role: Cargo
+        department: Setor
         email: Email
         password: Senha

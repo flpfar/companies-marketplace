@@ -10,6 +10,12 @@
   </head>
 
   <body>
+    <nav>
+      <% if user_signed_in? %>
+        <%= link_to 'Criar um anúncio' if current_user.enabled? %>
+        <%= show_user_title %>
+      <% end %>
+    </nav>
     <p class="notice"><%= notice %></p>
     <p class="alert"><%= alert %></p>
     <%= yield %>
