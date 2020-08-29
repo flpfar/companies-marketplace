@@ -1,3 +1,6 @@
-<h1>Companies Marketplace</h1>
-
-<%= link_to 'Preencher perfil', edit_user_registration_path %>
+<div class="posts-container">
+  <% @posts.each do |post| %>
+    <%= post.title %>
+    <%= number_to_currency post.price %>
+  <% end %>
+</div>

@@ -10,12 +10,20 @@
   </head>
 
   <body>
-    <nav>
-      <% if user_signed_in? %>
+    <h1>AELALALA</h1>
+    <% if user_signed_in? %>
+      <nav>
+        <span>Marketplace Logo</span>
         <%= link_to 'Criar um anúncio' if current_user.enabled? %>
         <%= show_user_title %>
-      <% end %>
-    </nav>
+
+        <% if current_user.disabled? %>
+          <div class="fill-profile-warning">
+            <%= link_to 'Preencher perfil', edit_user_registration_path %>
+          </div>
+        <% end %>
+      </nav>
+    <% end %>
     <p class="notice"><%= notice %></p>
     <p class="alert"><%= alert %></p>
     <%= yield %>
