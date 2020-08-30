@@ -2,6 +2,8 @@ require 'rails_helper'
 
 feature 'user sign up' do
   scenario 'successfully' do
+    Company.create!(name: 'Coke', domain: 'coke.com.br')
+
     visit root_path
     click_on 'Criar uma conta'
     fill_in 'Email', with: 'joao@coke.com.br'
@@ -13,6 +15,8 @@ feature 'user sign up' do
   end
 
   scenario 'and is redirected to index page' do
+    Company.create!(name: 'Coke', domain: 'coke.com.br')
+
     visit root_path
     click_on 'Criar uma conta'
     fill_in 'Email', with: 'joao@coke.com.br'
@@ -24,6 +28,8 @@ feature 'user sign up' do
   end
 
   scenario 'and cant see index page on fail' do
+    Company.create!(name: 'Coke', domain: 'coke.com.br')
+
     visit root_path
     click_on 'Criar uma conta'
     fill_in 'Email', with: 'joao@coke.com.br'
@@ -34,6 +40,8 @@ feature 'user sign up' do
   end
 
   scenario 'and doesnt fill password confirmation' do
+    Company.create!(name: 'Coke', domain: 'coke.com.br')
+
     visit root_path
     click_on 'Criar uma conta'
     fill_in 'Email', with: 'joao@coke.com.br'
@@ -45,6 +53,7 @@ feature 'user sign up' do
   end
 
   scenario 'and email account is already in use' do
+    Company.create!(name: 'Coke', domain: 'coke.com.br')
     User.create!(email: 'joao@coke.com.br', password: '123456')
 
     visit root_path

@@ -12,3 +12,5 @@ pt-BR:
         department: Setor
         email: Email
         password: Senha
+        company: Empresa
+        company_id: Empresa

@@ -2,6 +2,7 @@ require 'rails_helper'
 
 feature 'user fill profile info' do
   scenario 'successfully' do
+    Company.create!(name: 'Coke', domain: 'coke.com.br')
     user = User.create!(email: 'maria@coke.com.br', password: '123123')
 
     login_as user, scope: :user
@@ -20,6 +21,7 @@ feature 'user fill profile info' do
   end
 
   scenario 'and fields can not be empty' do
+    Company.create!(name: 'Coke', domain: 'coke.com.br')
     user = User.create!(email: 'maria@coke.com.br', password: '123123')
 
     login_as user, scope: :user
@@ -31,6 +33,7 @@ feature 'user fill profile info' do
   end
 
   scenario 'and is able to see a link to publish a product for sale' do
+    Company.create!(name: 'Coke', domain: 'coke.com.br')
     user = User.create!(email: 'maria@coke.com.br', password: '123123')
 
     login_as user, scope: :user
@@ -49,6 +52,7 @@ feature 'user fill profile info' do
   end
 
   scenario 'and is not able to see a link to publish a product for sale if profile info fails' do
+    Company.create!(name: 'Coke', domain: 'coke.com.br')
     user = User.create!(email: 'maria@coke.com.br', password: '123123')
 
     login_as user, scope: :user
