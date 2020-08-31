@@ -66,4 +66,21 @@ feature 'User creates sale post' do
 
     expect(page).to have_select('Categoria', options: ['Escolha uma categoria', 'Eletrodomésticos', 'Smartphones'])
   end
+
+  scenario 'and attributes cant be blank' do
+    company = Company.create!(name: 'Coke', domain: 'coke.com.br')
+    Category.create!(name: 'Eletrodomésticos', company: company)
+    user_diego = User.create!(name: 'Diego', social_name: 'Diego', birth_date: '18/10/90',
+                              role: 'Auxiliar', department: 'Comercial',
+                              email: 'diego@coke.com.br', password: '123123')
+
+    login_as user_diego, scope: :user
+    visit root_path
+    click_on 'Criar um anúncio'
+    click_on 'Criar anúncio'
+
+    expect(page).to have_content('Categoria é obrigatório(a)')
+    expect(page).to have_content('não pode ficar em branco', count: 3)
+    expect(SalePost.count).to eq(0)
+  end
 end

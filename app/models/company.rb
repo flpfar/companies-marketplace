@@ -1,5 +1,6 @@
 class Company < ApplicationRecord
   has_many :sale_posts
+  has_many :categories
 
   validates :name, :domain, presence: true
   validates :domain, uniqueness: true

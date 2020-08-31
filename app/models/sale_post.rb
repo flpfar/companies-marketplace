@@ -3,6 +3,8 @@ class SalePost < ApplicationRecord
   belongs_to :company
   belongs_to :category
 
+  validates :title, :description, :price, presence: true
+
   before_validation :assign_company
 
   private

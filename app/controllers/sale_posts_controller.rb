@@ -12,8 +12,12 @@ class SalePostsController < ApplicationController
 
   def create
     @sale_post = SalePost.new(sale_post_params)
-    @sale_post.save!
-    redirect_to @sale_post, notice: 'Anúncio criado com sucesso'
+    @categories = current_user.company.categories
+    if @sale_post.save
+      redirect_to @sale_post, notice: 'Anúncio criado com sucesso'
+    else
+      render :new
+    end
   end
 
   private

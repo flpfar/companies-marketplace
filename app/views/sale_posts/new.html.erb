@@ -1,3 +1,7 @@
+<% @sale_post.errors.full_messages.each do |message| %>
+  <p><%= message %></p>
+<% end %>
+
 <%= form_with model: @sale_post, local: true do |f| %>
   <%= f.label :title %>
   <%= f.text_field :title %>
