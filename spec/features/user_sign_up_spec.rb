@@ -66,4 +66,17 @@ feature 'user sign up' do
     expect(page).not_to have_content('Bem vindo! Você realizou seu registro com sucesso')
     expect(page).to have_content('já está em uso')
   end
+
+  scenario 'and company is not found' do
+    visit root_path
+    click_on 'Criar uma conta'
+    fill_in 'Email', with: 'joao@coke.com.br'
+    fill_in 'Senha', with: '123123'
+    fill_in 'Confirme sua senha', with: '123123'
+    click_on 'Criar conta'
+
+    expect(page).not_to have_content('Bem vindo! Você realizou seu registro com sucesso')
+    expect(page).to have_content('Empresa não encontrada. '\
+                                 'Certifique-se de utilizar um email com domínio da empresa no cadastro')
+  end
 end

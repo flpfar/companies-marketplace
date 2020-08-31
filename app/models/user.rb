@@ -22,7 +22,7 @@ class User < ApplicationRecord
     if company_found
       self.company = company_found
     else
-      errors.add(:company, 'não encontrada')
+      errors.add(:company, 'não encontrada. Certifique-se de utilizar um email com domínio da empresa no cadastro')
     end
   end
 end
