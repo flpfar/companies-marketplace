@@ -13,7 +13,7 @@ feature 'User views sale posts' do
     eletro_category = Category.create!(name: 'Eletrodomésticos', company: coke_company)
     user_disabled = User.create!(email: 'maria@coke.com.br', password: '123123')
     user_bruno = User.create!(name: 'Bruno', social_name: 'Bruno', birth_date: '18/10/90', role: 'Gerente',
-                              department: 'T.I', status: 1, email: 'bruno@coke.com.br', password: '123123')
+                              department: 'T.I', email: 'bruno@coke.com.br', password: '123123')
     sale_post_refrigerator = SalePost.create!(title: 'Geladeira Brastemp', price: '800', user: user_bruno,
                                               description: 'Geladeira semi nova, em ótimo estado',
                                               category: eletro_category)
@@ -56,10 +56,10 @@ feature 'User views sale posts' do
     furniture_pepsi_category = Category.create!(name: 'Móveis', company: pepsi_company)
     disabled_user = User.create!(email: 'maria@coke.com.br', password: '123123')
     user_bruno = User.create!(name: 'Bruno', social_name: 'Bruno',
-                              role: 'Gerente', department: 'T.I', status: 1, birth_date: '18/10/90',
+                              role: 'Gerente', department: 'T.I', birth_date: '18/10/90',
                               email: 'bruno@coke.com.br', password: '123123')
     user_diego = User.create!(name: 'Diego', social_name: 'Diego',
-                              role: 'Auxiliar', department: 'Comercial', status: 1, birth_date: '18/10/90',
+                              role: 'Auxiliar', department: 'Comercial', birth_date: '18/10/90',
                               email: 'diego@pepsi.com.br', password: '123123')
     sale_post_refrigerator = SalePost.create!(title: 'Geladeira Brastemp', price: '800', user: user_bruno,
                                            description: 'Geladeira semi nova, em ótimo estado',
@@ -88,10 +88,10 @@ feature 'User views sale posts' do
     furniture_category = Category.create!(name: 'Móveis', company: coke_company)
     disabled_user = User.create!(email: 'maria@coke.com.br', password: '123123')
     user_bruno = User.create!(name: 'Bruno', social_name: 'Bruno', birth_date: '18/10/90',
-                              role: 'Gerente', department: 'T.I', status: 1,
+                              role: 'Gerente', department: 'T.I',
                               email: 'bruno@coke.com.br', password: '123123')
     user_diego = User.create!(name: 'Diego', social_name: 'Diego', birth_date: '18/10/90',
-                              role: 'Auxiliar', department: 'Comercial', status: 1,
+                              role: 'Auxiliar', department: 'Comercial',
                               email: 'diego@coke.com.br', password: '123123')
     sale_post_geladeira = SalePost.create!(title: 'Geladeira Brastemp', price: '800', user: user_bruno,
                                            description: 'Geladeira semi nova, em ótimo estado',

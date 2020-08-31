@@ -48,7 +48,7 @@ feature 'user fill profile info' do
     user.reload
 
     expect(page).to have_content('Criar um anúncio')
-    expect(user.status).to eq('enabled')
+    expect(user).to be_enabled
   end
 
   scenario 'and is not able to see a link to publish a product for sale if profile info fails' do
@@ -62,6 +62,6 @@ feature 'user fill profile info' do
     user.reload
 
     expect(page).not_to have_content('Criar um anúncio')
-    expect(user.status).to eq('disabled')
+    expect(user).not_to be_enabled
   end
 end

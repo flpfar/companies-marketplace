@@ -25,7 +25,7 @@ feature 'User creates sale post' do
     Category.create!(name: 'Eletrodomésticos', company: company)
     Category.create!(name: 'Smartphones', company: company)
     user_diego = User.create!(name: 'Diego', social_name: 'Diego', birth_date: '18/10/90',
-                              role: 'Auxiliar', department: 'Comercial', status: 1,
+                              role: 'Auxiliar', department: 'Comercial',
                               email: 'diego@coke.com.br', password: '123123')
 
     login_as user_diego, scope: :user

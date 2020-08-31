@@ -6,12 +6,13 @@ class User < ApplicationRecord
 
   belongs_to :company
 
-  enum status: { disabled: 0, enabled: 1 }
-
   validates :name, :social_name, :birth_date, :role, :department, presence: true, on: :update
 
   before_validation :assign_company_by_email
-  after_update :enable_user
+
+  def enabled?
+    name.present?
+  end
 
   private
 
@@ -23,9 +24,5 @@ class User < ApplicationRecord
     else
       errors.add(:company, 'não encontrada')
     end
-  end
-
-  def enable_user
-    enabled! if disabled?
   end
 end
