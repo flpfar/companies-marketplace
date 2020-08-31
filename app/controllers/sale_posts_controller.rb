@@ -8,11 +8,22 @@ class SalePostsController < ApplicationController
   def new
     @sale_post = SalePost.new
     @categories = Category.where(company_id: current_user.company_id)
+    if @categories.empty?
+      message = 'Não há categorias cadastradas na sua empresa. Contate o administrador'
+      redirect_to root_path, alert: message
+    end
   end
 
   def create
     @sale_post = SalePost.new(sale_post_params)
     @categories = current_user.company.categories
+
+    if @categories.empty?
+      message = 'Não há categorias cadastradas na sua empresa. Contate o administrador'
+      redirect_to root_path, alert: message
+      return
+    end
+
     if @sale_post.save
       redirect_to @sale_post, notice: 'Anúncio criado com sucesso'
     else

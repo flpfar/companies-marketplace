@@ -83,4 +83,17 @@ feature 'User creates sale post' do
     expect(page).to have_content('não pode ficar em branco', count: 3)
     expect(SalePost.count).to eq(0)
   end
+
+  scenario 'and redirects to root when not categories were created' do
+    Company.create!(name: 'Coke', domain: 'coke.com.br')
+    user_diego = User.create!(name: 'Diego', social_name: 'Diego', birth_date: '18/10/90',
+                              role: 'Auxiliar', department: 'Comercial',
+                              email: 'diego@coke.com.br', password: '123123')
+
+    login_as user_diego, scope: :user
+    visit new_sale_post_path
+
+    expect(current_path).to eq(root_path)
+    expect(page).to have_content('Não há categorias cadastradas na sua empresa. Contate o administrador')
+  end
 end
