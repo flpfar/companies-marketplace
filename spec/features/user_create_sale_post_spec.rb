@@ -49,4 +49,21 @@ feature 'User creates sale post' do
       expect(page).to have_content(user_diego.department)
     end
   end
+
+  scenario 'and see only categories from company' do
+    company_coke = Company.create!(name: 'Coke', domain: 'coke.com.br')
+    company_pepsi = Company.create!(name: 'Coke', domain: 'pepsi.com.br')
+    Category.create!(name: 'Eletrodomésticos', company: company_coke)
+    Category.create!(name: 'Smartphones', company: company_coke)
+    Category.create!(name: 'Móveis', company: company_pepsi)
+    Category.create!(name: 'Automóveis', company: company_pepsi)
+    user_diego = User.create!(name: 'Diego', social_name: 'Diego', birth_date: '18/10/90',
+                              role: 'Auxiliar', department: 'Comercial',
+                              email: 'diego@coke.com.br', password: '123123')
+
+    login_as user_diego, scope: :user
+    visit new_sale_post_path
+
+    expect(page).to have_select('Categoria', options: ['Escolha uma categoria', 'Eletrodomésticos', 'Smartphones'])
+  end
 end
