@@ -1,0 +1,13 @@
+---
+pt-BR:
+  activerecord:
+    models:
+      sale_post: Anúncio
+    attributes:
+      sale_post:
+        title: Título
+        price: Preço
+        description: Descrição
+        user: Anunciante
+        category: Categoria
+        category_id: Categoria

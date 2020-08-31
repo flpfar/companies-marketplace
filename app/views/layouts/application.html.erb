@@ -14,7 +14,6 @@
     <% if user_signed_in? %>
       <nav>
         <span>Marketplace Logo</span>
-        <%= link_to 'Criar um anúncio' if current_user.enabled? %>
         <%= show_user_title %>
 
         <% if current_user.disabled? %>

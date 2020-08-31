@@ -1,0 +1,13 @@
+<div class="post-container">
+  <%= @sale_post.title %>
+  <%= @sale_post.description %>
+  <%= @sale_post.category.name %>
+  <%= number_to_currency @sale_post.price %>
+
+  <div class="post-author">
+    <%= @sale_post.user.name %>
+    <%= @sale_post.user.email %>
+    <%= @sale_post.user.role %>
+    <%= @sale_post.user.department %>
+  </div>
+</div>

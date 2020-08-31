@@ -20,23 +20,25 @@ feature 'User creates sale post' do
     expect(page).to have_content('Para criar um anúncio seu perfil deve estar preenchido')
   end
 
-  xscenario 'successfully' do
-    Company.create!(name: 'Coke', domain: 'coke.com.br')
+  scenario 'successfully' do
+    company = Company.create!(name: 'Coke', domain: 'coke.com.br')
+    Category.create!(name: 'Eletrodomésticos', company: company)
+    Category.create!(name: 'Smartphones', company: company)
     user_diego = User.create!(name: 'Diego', social_name: 'Diego', birth_date: '18/10/90',
                               role: 'Auxiliar', department: 'Comercial', status: 1,
                               email: 'diego@coke.com.br', password: '123123')
 
     login_as user_diego, scope: :user
     visit root_path
-    click_on 'Criar novo anúncio'
+    click_on 'Criar um anúncio'
     fill_in 'Título', with: 'Fogão'
     select 'Eletrodomésticos', from: 'Categoria'
-    fill_in 'Descrição', with: 'Fogão ideal pra todos'
+    fill_in 'Descrição', with: 'Fogão ideal para todos'
     fill_in 'Preço', with: '300'
     click_on 'Criar anúncio'
 
-    expect(page).to have_content('Anúncio criado com sucesso!')
-    within 'post-container' do
+    expect(page).to have_content('Anúncio criado com sucesso')
+    within '.post-container' do
       expect(page).to have_content('Fogão')
       expect(page).to have_content('Eletrodomésticos')
       expect(page).to have_content('Fogão ideal para todos')
