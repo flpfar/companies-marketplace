@@ -3,8 +3,12 @@
   <% if @posts.empty? %>
     <p>Não há anúncios cadastrados</p>
   <% end %>
+
   <% @posts.each do |post| %>
-    <%= post.title %>
-    <%= number_to_currency post.price %>
+    <div class="post-item" data-item="<%= post.id %>">
+      <%= link_to post.title, sale_post_path(post.id) %>
+      <%= number_to_currency post.price %>
+    </div>
   <% end %>
+
 </div>

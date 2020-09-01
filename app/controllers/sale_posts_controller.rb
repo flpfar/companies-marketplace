@@ -1,5 +1,5 @@
 class SalePostsController < ApplicationController
-  before_action :user_must_be_enabled
+  before_action :user_must_be_enabled, only: [:new, :create]
 
   def show
     @sale_post = SalePost.find(params[:id])
