@@ -1,6 +1,7 @@
 class Company < ApplicationRecord
-  has_many :sale_posts
   has_many :categories
+  has_many :users
+  has_many :sale_posts, through: :users
 
   validates :name, :domain, presence: true
   validates :domain, uniqueness: true

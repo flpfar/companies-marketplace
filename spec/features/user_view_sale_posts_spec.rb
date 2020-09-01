@@ -62,8 +62,8 @@ feature 'User views sale posts' do
                               role: 'Auxiliar', department: 'Comercial', birth_date: '18/10/90',
                               email: 'diego@pepsi.com.br', password: '123123')
     sale_post_refrigerator = SalePost.create!(title: 'Geladeira Brastemp', price: '800', user: user_bruno,
-                                           description: 'Geladeira semi nova, em ótimo estado',
-                                           company: user_bruno.company, category: eletro_coke_category)
+                                              description: 'Geladeira semi nova, em ótimo estado',
+                                              category: eletro_coke_category)
     sale_post_fogao = SalePost.create!(title: 'Fogão Dako', price: '300', user: user_diego,
                                        description: 'Fogão ideal pra todos', category: eletro_pepsi_category)
     sale_post_sofa = SalePost.create!(title: 'Sofá', price: '100', user: user_diego,
