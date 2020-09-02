@@ -1,9 +1,6 @@
 require 'rails_helper'
 
 feature 'User buys a product' do
-  xscenario 'must be enabled'
-  xscenario 'must not be the owner'
-
   scenario 'successfully' do
     coke_company = Company.create!(name: 'Coke', domain: 'coke.com.br')
     eletro_category = Category.create!(name: 'Eletrodomésticos', company: coke_company)
