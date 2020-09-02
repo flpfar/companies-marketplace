@@ -84,7 +84,7 @@ feature 'User creates sale post' do
     expect(SalePost.count).to eq(0)
   end
 
-  scenario 'and redirects to root when not categories were created' do
+  scenario 'and is redirected to root when no categories were created' do
     Company.create!(name: 'Coke', domain: 'coke.com.br')
     user_diego = User.create!(name: 'Diego', social_name: 'Diego', birth_date: '18/10/90',
                               role: 'Auxiliar', department: 'Comercial',

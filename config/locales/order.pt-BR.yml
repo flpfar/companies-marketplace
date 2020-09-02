@@ -1,0 +1,9 @@
+---
+  pt-BR:
+    activerecord:
+      models:
+        order: Pedido
+      attributes:
+        status: Situação
+        order/status:
+          in_progress: Em andamento

@@ -13,5 +13,5 @@
 </div>
 
 <% if current_user.enabled? && current_user != @sale_post.user %>
-  <%= link_to "Comprar" %>
+  <%= link_to "Comprar", sale_post_orders_path(@sale_post.id), method: :post %>
 <% end %>
