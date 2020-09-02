@@ -3,6 +3,7 @@ class SalePostsController < ApplicationController
 
   def show
     @sale_post = SalePost.find(params[:id])
+    @comment = Comment.new
   end
 
   def new

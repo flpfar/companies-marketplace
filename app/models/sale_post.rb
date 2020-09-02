@@ -1,7 +1,9 @@
 class SalePost < ApplicationRecord
   belongs_to :user
   belongs_to :category
+
   has_many :orders
+  has_many :comments
 
   enum status: { enabled: 0, disabled: 10 }
 

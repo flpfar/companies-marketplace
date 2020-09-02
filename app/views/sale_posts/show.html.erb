@@ -10,6 +10,24 @@
     <%= @sale_post.user.role %>
     <%= @sale_post.user.department %>
   </div>
+
+  <div class="comments-container">
+    <h2>Comentários</h2>
+
+    <%= 'Não há comentários' if @sale_post.comments.empty? %>
+
+    <% @sale_post.comments.each do |comment| %>
+      <div class="comment-item">
+        <%= comment.user.name %>
+        <%= comment.body %>
+      </div>
+    <% end %>
+
+    <%= form_with model: [@sale_post, @comment], locals: true do |f| %>
+      <%= f.text_area :body, placeholder: 'Comentário...' %>
+      <%= f.submit 'Enviar' %>
+    <% end %>
+  </div>
 </div>
 
 <% if current_user.enabled? && current_user != @sale_post.user %>
