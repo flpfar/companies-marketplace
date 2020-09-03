@@ -23,7 +23,7 @@ feature 'User views sale posts' do
     visit root_path
     fill_in 'Email', with: user_disabled.email
     fill_in 'Senha', with: user_disabled.password
-    click_on 'Log in'
+    click_on 'Entrar'
 
     within 'nav' do
       expect(page).to have_content(user_disabled.email)
