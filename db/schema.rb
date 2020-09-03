@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_09_03_192415) do
+ActiveRecord::Schema.define(version: 2020_09_03_202927) do
 
   create_table "categories", force: :cascade do |t|
     t.string "name"
@@ -56,7 +56,11 @@ ActiveRecord::Schema.define(version: 2020_09_03_192415) do
     t.integer "status", default: 0
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "buyer_id", null: false
+    t.integer "seller_id", null: false
+    t.index ["buyer_id"], name: "index_orders_on_buyer_id"
     t.index ["sale_post_id"], name: "index_orders_on_sale_post_id"
+    t.index ["seller_id"], name: "index_orders_on_seller_id"
   end
 
   create_table "sale_posts", force: :cascade do |t|
@@ -96,6 +100,8 @@ ActiveRecord::Schema.define(version: 2020_09_03_192415) do
   add_foreign_key "comments", "users"
   add_foreign_key "notifications", "users"
   add_foreign_key "orders", "sale_posts"
+  add_foreign_key "orders", "users", column: "buyer_id"
+  add_foreign_key "orders", "users", column: "seller_id"
   add_foreign_key "sale_posts", "categories"
   add_foreign_key "sale_posts", "users"
   add_foreign_key "users", "companies"

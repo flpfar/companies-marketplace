@@ -1,8 +1,11 @@
 class OrdersController < ApplicationController
+  before_action :must_be_buyer_or_seller, only: [:show]
+
   def create
     @sale_post = SalePost.find(params[:sale_post_id])
     @order = Order.new(item_name: @sale_post.title, item_description: @sale_post.description, sale_post: @sale_post,
-                       posted_price: @sale_post.price, status: :in_progress)
+                       posted_price: @sale_post.price, status: :in_progress, buyer: current_user, 
+                       seller: @sale_post.user)
     if @order.save
       @sale_post.user.notifications.create!(body: "Solicitação de compra pendente em anúncio #{@sale_post.title}",
                                             path: order_path(@order))
@@ -15,10 +18,12 @@ class OrdersController < ApplicationController
     end
   end
 
-  def show
-    @order = Order.find(params[:id])
-  end
+  def show; end
 
   private
 
+  def must_be_buyer_or_seller
+    @order = Order.find(params[:id])
+    redirect_to root_path unless current_user == @order.buyer || current_user == @order.seller
+  end
 end
