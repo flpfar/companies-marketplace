@@ -7,7 +7,7 @@ feature 'user fill profile info' do
 
     login_as user, scope: :user
     visit root_path
-    click_on 'Preencher perfil'
+    click_on 'preencha seu perfil'
     fill_in 'Nome', with: 'Maria Antônia'
     fill_in 'Nome social', with: 'Toninha'
     fill_in 'Data de nascimento', with: '01/01/1991'
@@ -26,7 +26,7 @@ feature 'user fill profile info' do
 
     login_as user, scope: :user
     visit root_path
-    click_on 'Preencher perfil'
+    click_on 'preencha seu perfil'
     click_on 'Enviar'
 
     expect(page).to have_content('não pode ficar em branco', count: 5)
@@ -38,7 +38,7 @@ feature 'user fill profile info' do
 
     login_as user, scope: :user
     visit root_path
-    click_on 'Preencher perfil'
+    click_on 'preencha seu perfil'
     fill_in 'Nome', with: 'Maria Antônia'
     fill_in 'Nome social', with: 'Toninha'
     fill_in 'Data de nascimento', with: '01/01/1991'
@@ -57,7 +57,7 @@ feature 'user fill profile info' do
 
     login_as user, scope: :user
     visit root_path
-    click_on 'Preencher perfil'
+    click_on 'preencha seu perfil'
     click_on 'Enviar'
     user.reload
 
