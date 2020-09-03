@@ -1,1 +1,8 @@
 <%= Order.human_attribute_name("status.#{@order.status}") %>
+
+<% if current_user == @order.seller %>
+  <div class="seller-controllers">
+    <%= link_to 'Concluir venda' %>
+    <%= link_to 'Cancelar venda' %>
+  </div>
+<% end %>
