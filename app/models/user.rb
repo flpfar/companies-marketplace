@@ -6,6 +6,7 @@ class User < ApplicationRecord
 
   belongs_to :company
   has_many :sale_posts
+  has_many :notifications
 
   validates :name, :social_name, :birth_date, :role, :department, presence: true, on: :update
 

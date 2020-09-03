@@ -23,8 +23,15 @@
   
   <div class="flex">
     <%= link_to "Criar um anúncio", new_sale_post_path, class: "mx-10 bg-gray-200 text-gray-900 rounded px-3" if current_user.enabled? %>
-    <div class="">
-      <%= link_to show_user_title %>
+    <div>
+      <%= link_to root_path do %>
+        <%= show_user_title %>
+        <% if current_user.notifications.unseen %>
+          <span class="notifications rounded-full bg-red-600 text-white">
+            <%= current_user.notifications.unseen.size %>
+          </span>
+        <% end %>
+      <% end %>
       <span class="mx-2">|</span>
       <%= link_to "Sair", destroy_user_session_path, method: :delete %>
     </div>
