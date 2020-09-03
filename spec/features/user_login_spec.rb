@@ -17,6 +17,20 @@ feature 'User logs in' do
     expect(page).not_to have_content('Email ou senha inválidos')
   end
 
+  scenario 'and logs out' do
+    Company.create!(name: 'Coke', domain: 'coke.com')
+    User.create!(email: 'user@coke.com', password: '123123')
+
+    visit root_path
+    fill_in 'Email', with: 'user@coke.com'
+    fill_in 'Senha', with: '123123'
+    click_on 'Entrar'
+    click_on 'Sair'
+
+    expect(page).to have_content('Para continuar, faça login ou registre-se')
+    expect(current_path).to eq(new_user_session_path)
+  end
+
   scenario 'with wrong email' do
     Company.create!(name: 'Coke', domain: 'coke.com')
     User.create!(email: 'user@coke.com', password: '123123')
