@@ -39,6 +39,7 @@ feature 'User views order' do
         expect(page).to have_link('Cancelar venda')
       end
     end
+    xscenario 'and has no option to complete or cancel a finalized order'
   end
   context 'as a buyer' do
     scenario 'and has no options to control the order' do

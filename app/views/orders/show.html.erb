@@ -2,7 +2,7 @@
 
 <% if current_user == @order.seller %>
   <div class="seller-controllers">
-    <%= link_to 'Concluir venda' %>
+    <%= link_to 'Concluir venda', complete_order_path, method: :post %>
     <%= link_to 'Cancelar venda' %>
   </div>
 <% end %>

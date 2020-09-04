@@ -20,6 +20,18 @@ class OrdersController < ApplicationController
 
   def show; end
 
+  def complete
+    @order = Order.find(params[:id])
+    return redirect_to root_path if current_user != @order.seller
+
+    @order.completed!
+    @order.sale_post.disabled!
+    @order.buyer.notifications.create(
+      body: "O vendedor aceitou seu pedido de compra para '#{@order.item_name}'", path: order_path(@order)
+    )
+    redirect_to root_path, notice: 'Venda finalizada com sucesso'
+  end
+
   private
 
   def must_be_buyer_or_seller

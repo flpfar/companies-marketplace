@@ -24,7 +24,7 @@
   <div class="flex">
     <%= link_to "Criar um anúncio", new_sale_post_path, class: "mx-10 bg-gray-200 text-gray-900 rounded px-3" if current_user.enabled? %>
     <div>
-      <%= link_to root_path do %>
+      <%= link_to current_user do %>
         <%= show_user_title %>
         <% if current_user.notifications.unseen %>
           <span class="notifications rounded-full bg-red-600 text-white">

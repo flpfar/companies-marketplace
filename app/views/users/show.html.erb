@@ -1,0 +1,13 @@
+<div class="profile-container">
+  <% if current_user == @user %>
+    <h1>My Profile</h1>
+  <% else %>
+    <h1><%= @user.social_name %></h1>
+  <% end %>
+</div>
+
+<div class="notifications-unseen">
+  <% @user.notifications.unseen.each do |notification| %>
+    <%= link_to notification.body, notification.path %>
+  <% end %>
+</div>
