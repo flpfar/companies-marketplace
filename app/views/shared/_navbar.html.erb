@@ -3,9 +3,9 @@
     <%= link_to root_path do %>
       <%= image_tag "logo-white.png", class: "w-32" %>
     <% end %>
-    <ul class="flex mx-8">
-      <li class="mr-4"><%= link_to "Início", root_path %></li>
-      <li><%= link_to "Categorias" %></li>
+    <ul class="flex mx-8 font-bold">
+      <li class="mr-4"><%= link_to "Início", root_path, class: "hover:underline" %></li>
+      <li><%= link_to "Categorias", root_path, class: "hover:underline"  %></li>
     </ul>
     <%= form_with method: :get, local: true, class: "ml-4 flex items-center justify-center" do |f| %>
       <%= f.text_field :q, placeholder: 'Buscar', class: "px-2 w-64 text-gray-900 text-sm h-8" %>
@@ -21,19 +21,19 @@
     <% end %>
   </div>
   
-  <div class="flex">
-    <%= link_to "Criar um anúncio", new_sale_post_path, class: "mx-10 bg-gray-200 text-gray-900 rounded px-3" if current_user.enabled? %>
+  <div class="flex items-center">
+    <%= link_to "Criar um anúncio", new_sale_post_path, class: "mx-10 border border-gray-400 text-gray-400 hover:bg-gray-400 hover:text-gray-900 rounded px-3 py-1" if current_user.enabled? %>
     <div>
-      <%= link_to current_user do %>
+      <%= link_to current_user, class: "hover:underline" do %>
         <%= show_user_title %>
-        <% if current_user.notifications.unseen %>
-          <span class="notifications rounded-full bg-red-600 text-white">
+        <% if current_user.notifications.unseen.present? %>
+          <span class="notifications rounded-full bg-red-600 text-white inline-block text-sm text-center w-5 h-5">
             <%= current_user.notifications.unseen.size %>
           </span>
         <% end %>
       <% end %>
       <span class="mx-2">|</span>
-      <%= link_to "Sair", destroy_user_session_path, method: :delete %>
+      <%= link_to "Sair", destroy_user_session_path, class: "hover:underline", method: :delete %>
     </div>
   </div>
 </nav>
