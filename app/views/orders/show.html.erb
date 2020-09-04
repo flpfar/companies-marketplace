@@ -3,6 +3,6 @@
 <% if current_user == @order.seller %>
   <div class="seller-controllers">
     <%= link_to 'Concluir venda', complete_order_path, method: :post %>
-    <%= link_to 'Cancelar venda' %>
+    <%= link_to 'Cancelar venda', cancel_order_path, method: :post %>
   </div>
 <% end %>

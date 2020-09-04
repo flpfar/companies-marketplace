@@ -1,5 +1,6 @@
 class OrdersController < ApplicationController
   before_action :must_be_buyer_or_seller, only: [:show]
+  before_action :must_be_seller, only: [:complete, :cancel]
 
   def create
     @sale_post = SalePost.find(params[:sale_post_id])
@@ -7,23 +8,16 @@ class OrdersController < ApplicationController
                        posted_price: @sale_post.price, status: :in_progress, buyer: current_user, 
                        seller: @sale_post.user)
     if @order.save
-      @sale_post.user.notifications.create!(body: "Solicitação de compra pendente em anúncio #{@sale_post.title}",
-                                            path: order_path(@order))
-      @sale_post.disabled!
       redirect_to order_path(@order), notice: 'Solicitação de compra enviada. '\
                                                                       'Aguarde aprovação do vendedor'
     else
-      flash[:alert] = 'Erro ao solicitar compra. Tente novamente mais tarde'
-      redirect_back fallback_location: root_path
+      redirect_back fallback_location: root_path, alert: 'Erro ao solicitar compra. Tente novamente mais tarde'
     end
   end
 
   def show; end
 
   def complete
-    @order = Order.find(params[:id])
-    return redirect_to root_path if current_user != @order.seller
-
     @order.completed!
     @order.sale_post.disabled!
     @order.buyer.notifications.create(
@@ -32,7 +26,21 @@ class OrdersController < ApplicationController
     redirect_to root_path, notice: 'Venda finalizada com sucesso'
   end
 
+  def cancel
+    @order.canceled!
+    @order.sale_post.enabled!
+    @order.buyer.notifications.create(
+      body: "O vendedor cancelou seu pedido de compra para '#{@order.item_name}'", path: order_path(@order)
+    )
+    redirect_to root_path, notice: 'Venda cancelada com sucesso'
+  end
+
   private
+
+  def must_be_seller
+    @order = Order.find(params[:id])
+    return redirect_to root_path if current_user != @order.seller
+  end
 
   def must_be_buyer_or_seller
     @order = Order.find(params[:id])

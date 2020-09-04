@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   resources :orders, only: [:show] do
     member do
       post 'complete'
+      post 'cancel'
     end
   end
 
