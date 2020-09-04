@@ -5,6 +5,7 @@ Rails.application.routes.draw do
     resources :orders, only: [:create]
     resources :comments, only: [:create]
   end
+  resources :categories, only: [:index, :show]
   resources :orders, only: [:show] do
     member do
       post 'complete'

@@ -5,7 +5,7 @@
     <% end %>
     <ul class="flex mx-8 font-bold">
       <li class="mr-4"><%= link_to "Início", root_path, class: "hover:underline" %></li>
-      <li><%= link_to "Categorias", root_path, class: "hover:underline"  %></li>
+      <li><%= link_to "Categorias", categories_path, class: "hover:underline"  %></li>
     </ul>
     <%= form_with method: :get, local: true, class: "ml-4 flex items-center justify-center" do |f| %>
       <%= f.text_field :q, placeholder: 'Buscar', class: "px-2 w-64 text-gray-900 text-sm h-8" %>

@@ -1,0 +1,8 @@
+<h1><%= @category.name %></h1>
+<p>Total de anúncios em <%= @category.name %>: <%= @category.sale_posts.size %></p>
+<% @category.sale_posts.each do |post| %>
+  <div class="post-item" data-item="<%= post.id %>">
+    <%= link_to post.title, sale_post_path(post.id) %>
+    <%= number_to_currency post.price %>
+  </div>
+<% end %>
