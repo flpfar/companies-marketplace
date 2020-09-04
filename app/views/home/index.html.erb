@@ -3,11 +3,14 @@
     <p>Não há anúncios cadastrados</p>
   <% end %>
 
+  <!--
   <% @posts.each do |post| %>
     <div class="post-item" data-item="<%= post.id %>">
       <%= link_to post.title, sale_post_path(post.id) %>
       <%= number_to_currency post.price %>
     </div>
   <% end %>
+  -->
+  <%= render partial: 'shared/sale_post_list', locals: { posts: @posts } %>
 
 </div>
