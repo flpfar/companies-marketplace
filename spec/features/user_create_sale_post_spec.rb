@@ -35,6 +35,7 @@ feature 'User creates sale post' do
     select 'Eletrodomésticos', from: 'Categoria'
     fill_in 'Descrição', with: 'Fogão ideal para todos'
     fill_in 'Preço', with: '300'
+    attach_file 'Imagem de capa', Rails.root.join('spec/support/test-image.jpg')
     click_on 'Criar anúncio'
 
     expect(page).to have_content('Anúncio criado com sucesso')
@@ -43,6 +44,7 @@ feature 'User creates sale post' do
       expect(page).to have_content('Eletrodomésticos')
       expect(page).to have_content('Fogão ideal para todos')
       expect(page).to have_content('R$ 300,00')
+      expect(page).to have_css('img[src*="test-image.jpg"]')
       expect(page).to have_content(user_diego.name)
       expect(page).to have_content(user_diego.email)
       expect(page).to have_content(user_diego.role)

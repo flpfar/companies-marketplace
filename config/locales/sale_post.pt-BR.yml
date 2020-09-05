@@ -9,5 +9,6 @@ pt-BR:
         price: Preço
         description: Descrição
         user: Anunciante
+        cover: Imagem de capa
         category: Categoria
         category_id: Categoria

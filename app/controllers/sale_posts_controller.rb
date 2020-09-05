@@ -42,7 +42,10 @@ class SalePostsController < ApplicationController
   private
 
   def sale_post_params
-    params.require(:sale_post).permit(:title, :description, :price, :category_id).merge(user_id: current_user.id)
+    params
+      .require(:sale_post)
+      .permit(:title, :description, :price, :category_id, :cover)
+      .merge(user_id: current_user.id)
   end
 
   def user_must_be_enabled

@@ -1,7 +1,7 @@
 <!--<article data-item="<%= post.id %>" class="post-item rounded overflow-hidden border-solid border-2">-->
 <%= link_to sale_post_path(post.id), class: "post-item", data: { item: post.id } do %>
   <article class="rounded overflow-hidden border-solid border-2 shadow-md hover:shadow-none">
-    <img class="w-full h-48 object-cover" src="https://img.olx.com.br/images/88/881097551711734.jpg" alt="">
+    <%= cover_image(post, classes: "w-full h-48 object-cover") %>
 
     <div class="px-6 py-2 relative">
       <span class="absolute bg-gray-900 text-white font-bold inline-block top-0 right-0 -my-8 py-1 px-2"><%= number_to_currency post.price %></span>

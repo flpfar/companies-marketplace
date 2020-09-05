@@ -29,7 +29,6 @@ feature 'User views category' do
   scenario 'and cant see disabled sale posts' do
     company = Company.create!(name: 'Company', domain: 'company.com')
     category_games = Category.create!(name: 'Games', company: company)
-    category_eletro = Category.create!(name: 'Eletrodomésticos', company: company)
     user = User.create!(name: 'User', email: 'user@company.com', password: '123123')
     xbox = SalePost.create!(user: user, category: category_games, title: 'Xbox One', description: 'With 5 games',
                             price: 900)

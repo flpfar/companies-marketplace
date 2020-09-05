@@ -4,6 +4,7 @@ class SalePost < ApplicationRecord
 
   has_many :orders
   has_many :comments
+  has_one_attached :cover
 
   enum status: { enabled: 0, disabled: 10 }
 
