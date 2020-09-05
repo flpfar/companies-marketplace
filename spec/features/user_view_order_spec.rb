@@ -35,11 +35,29 @@ feature 'User views order' do
 
       expect(page).to have_css('.seller-controllers')
       within '.seller-controllers' do
-        expect(page).to have_link('Concluir venda')
+        expect(page).to have_button('Concluir venda')
         expect(page).to have_link('Cancelar venda')
       end
     end
-    xscenario 'and has no option to complete or cancel a finalized order'
+
+    scenario 'and has no option to complete or cancel a finalized order' do
+      company = Company.create!(name: 'Coke', domain: 'coke.com')
+      user_seller = User.create!(name: 'Bruno', email: 'bruno@coke.com', password: '123123')
+      user_buyer = User.create!(name: 'Joao', email: 'joao@coke.com', password: '123123')
+      category = Category.create!(name: 'Eletrodomésticos', company: company)
+      post = SalePost.create!(title: 'Fogão novo', description: 'Em ótimo estado', price: 140,
+                              category: category, user: user_seller)
+      order = Order.create!(item_name: post.title, item_description: post.description, sale_post: post,
+                            posted_price: post.price, buyer: user_buyer, seller: user_seller,
+                            status: :completed)
+
+      login_as user_seller, scope: :user
+      visit order_path(order)
+
+      expect(page).to have_no_css('.seller-controllers')
+      expect(page).to have_no_button('Concluir venda')
+      expect(page).to have_no_link('Cancelar venda')
+    end
   end
   context 'as a buyer' do
     scenario 'and has no options to control the order' do

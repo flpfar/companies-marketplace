@@ -18,9 +18,41 @@ feature 'Seller finishes an order' do
     click_on seller.social_name
     click_on seller.notifications.first.body
     click_on 'Concluir venda'
+    fill_in 'Valor final', with: 1020
+    click_on 'Finalizar'
 
     expect(page).to have_content('Venda finalizada com sucesso')
-    expect(current_path).to eq(root_path)
+    expect(current_path).to eq('/orders/1')
+    expect(page).to have_content('Finalizado')
+    expect(page).to have_content('R$ 1.020,00')
+    expect(post.reload).to be_disabled
+    expect(post.orders.first).to be_completed
+    expect(buyer.reload.notifications.unseen.first.body).to include('O vendedor aceitou seu pedido de compra')
+  end
+
+  scenario 'with a completed without filling the final price' do
+    company = Company.create!(name: 'Coke', domain: 'coke.com')
+    category = company.categories.create!(name: 'Games')
+    seller = User.create!(name: 'Seller', social_name: 'Seller', email: 'seller@coke.com', password: '123123')
+    buyer = User.create!(name: 'Buyer', social_name: 'Buyer', email: 'buyer@coke.com', password: '123123')
+    post = seller.sale_posts.create!(title: 'Xbox One', price: 1000, description: 'Xbox one com 2 controles',
+                                     category: category)
+
+    login_as buyer, scope: :user
+    visit sale_post_path(post)
+    click_on 'Comprar'
+    click_on 'Sair'
+    login_as seller, scope: :user
+    visit root_path
+    click_on seller.social_name
+    click_on seller.notifications.first.body
+    click_on 'Concluir venda'
+    click_on 'Finalizar'
+
+    expect(page).to have_content('Venda finalizada com sucesso')
+    expect(current_path).to eq('/orders/1')
+    expect(page).to have_content('Finalizado')
+    expect(page).to have_content('R$ 1.000,00', count: 2)
     expect(post.reload).to be_disabled
     expect(post.orders.first).to be_completed
     expect(buyer.reload.notifications.unseen.first.body).to include('O vendedor aceitou seu pedido de compra')

@@ -7,3 +7,5 @@
         status: Situação
         order/status:
           in_progress: Em andamento
+          completed: Finalizado
+          canceled: Cancelado
