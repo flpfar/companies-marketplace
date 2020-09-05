@@ -1,0 +1,3 @@
+<h1 class="text-xl font-bold text-gray-900">Resultados da busca por: <u><%= @keyword %></u></h1>
+<em class="mb-4 block">Total de anúncios encontrados: <%= @posts.size %></em>
+<%= render partial: 'shared/sale_post_list', locals: { posts: @posts } %>

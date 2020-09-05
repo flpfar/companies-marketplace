@@ -7,9 +7,9 @@
       <li class="mr-4"><%= link_to "Início", root_path, class: "hover:underline" %></li>
       <li><%= link_to "Categorias", categories_path, class: "hover:underline"  %></li>
     </ul>
-    <%= form_with method: :get, local: true, class: "ml-4 flex items-center justify-center" do |f| %>
+    <%= form_with url: search_sale_posts_path, method: :get, local: true, class: "ml-4 flex items-center justify-center" do |f| %>
       <%= f.text_field :q, placeholder: 'Buscar', class: "px-2 w-64 text-gray-900 text-sm h-8" %>
-      <%= button_tag type: 'submit', class: "px-2 bg-gray-200 text-gray-900 text-sm h-8" do %>
+      <%= button_tag type: 'submit', class: "search-btn px-2 bg-gray-200 text-gray-900 text-sm h-8" do %>
         <svg class="text-gray-600 h-4 w-4 fill-current" xmlns="http://www.w3.org/2000/svg"
             xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px"
             viewBox="0 0 56.966 56.966" style="enable-background:new 0 0 56.966 56.966;" xml:space="preserve"

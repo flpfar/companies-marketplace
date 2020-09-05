@@ -32,6 +32,11 @@ class SalePostsController < ApplicationController
     end
   end
 
+  def search
+    @keyword = params[:q]
+    @posts = SalePost.where('title LIKE ? OR description LIKE ?', "%#{@keyword}%", "%#{@keyword}%")
+  end
+
   private
 
   def sale_post_params
