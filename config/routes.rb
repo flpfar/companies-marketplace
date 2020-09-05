@@ -13,6 +13,9 @@ Rails.application.routes.draw do
       post 'cancel'
     end
   end
+  resources :notifications, only: [] do
+    post 'seen'
+  end
 
   root to: 'home#index'
 end
