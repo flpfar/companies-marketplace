@@ -28,7 +28,7 @@ feature 'User views notifications' do
     expect(page).to have_content("Solicitação de compra pendente em anúncio #{post2.title}")
   end
 
-  scenario 'and it gets a "seen" status' do
+  scenario 'and visits notification' do
     company = Company.create!(name: 'Coke', domain: 'coke.com')
     category = company.categories.create!(name: 'Games')
     seller = User.create!(name: 'Seller', social_name: 'Seller', email: 'seller@coke.com', password: '123123')
@@ -44,6 +44,9 @@ feature 'User views notifications' do
     click_on seller.notifications.first.body
 
     expect(page).to have_no_css('.notifications')
+    expect(current_path).to eq('/orders/1')
+    expect(page).to have_content(post.title)
+    expect(page).to have_content('R$ 1.000,00')
     expect(seller.notifications.unseen).to be_empty
     expect(seller.notifications.first).to be_seen
   end
