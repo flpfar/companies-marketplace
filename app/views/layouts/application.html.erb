@@ -28,10 +28,7 @@
         <%= yield %>
       </div>
     </div>
-  <script>
-    setTimeout(() => {
-      document.querySelector('.flash-msg').classList.add('-mt-48')
-    }, 4000);
-  </script>
+
+    <%= javascript_pack_tag 'flash_notifications' %>
   </body>
 </html>
