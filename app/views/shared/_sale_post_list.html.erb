@@ -1,14 +1,5 @@
-<div class="grid gap-1 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+<ul class="grid gap-4 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
   <% posts.each do |post| %>
-    <div data-item="<%= post.id %>" class="post-item rounded overflow-hidden border-solid border-2">
-      <%# <img class="w-full" src="" alt=""> %>
-
-      <div class="px-6 py-2">
-        <span class="inline-block text-sm text-gray-700 mr-2 mb-1"><%= post.category.name %></span>
-
-        <h5 class="font-bold text-gray-900 text-md mb-2"><%= link_to post.title, sale_post_path(post.id) %></h5>
-        <%= number_to_currency post.price %>
-      </div>
-    </div>
+    <li><%= render partial: 'shared/sale_post_item', locals: { post: post } %></li>
   <% end %>
-</div>
+</ul>

@@ -30,9 +30,7 @@ feature 'User views sale post details' do
 
     login_as disabled_user, scope: :user
     visit root_path
-    within ".post-item[data-item='#{sale_post_refrigerator.id}']" do
-      click_on sale_post_refrigerator.title
-    end
+    find(".post-item[data-item='#{sale_post_refrigerator.id}']").click
 
     within '.post-container' do
       expect(page).to have_content(sale_post_refrigerator.title)
