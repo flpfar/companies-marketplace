@@ -48,6 +48,31 @@ feature 'User views sale posts' do
     end
   end
 
+  scenario 'that are enabled only' do
+    coke_company = Company.create!(name: 'Coke', domain: 'coke.com.br')
+    eletro_category = Category.create!(name: 'Eletrodomésticos', company: coke_company)
+    user_disabled = User.create!(email: 'maria@coke.com.br', password: '123123')
+    user_bruno = User.create!(name: 'Bruno', social_name: 'Bruno', birth_date: '18/10/90', role: 'Gerente',
+                              department: 'T.I', email: 'bruno@coke.com.br', password: '123123')
+    sale_post_refrigerator = SalePost.create!(title: 'Geladeira Brastemp', price: '800', user: user_bruno,
+                                              description: 'Geladeira semi nova, em ótimo estado',
+                                              category: eletro_category, status: :disabled)
+    sale_post_fogao = SalePost.create!(title: 'Fogão Dako', price: '300', user: user_bruno,
+                                       description: 'Fogão ideal pra todos', category: eletro_category)
+
+    visit root_path
+    fill_in 'Email', with: user_disabled.email
+    fill_in 'Senha', with: user_disabled.password
+    click_on 'Entrar'
+
+    within 'div.posts-container' do
+      expect(page).to have_no_content(sale_post_refrigerator.title)
+      expect(page).to have_no_content("R$ #{sale_post_refrigerator.price},00")
+      expect(page).to have_content(sale_post_fogao.title)
+      expect(page).to have_content("R$ #{sale_post_fogao.price},00")
+    end
+  end
+
   scenario 'only from the same company' do
     coke_company = Company.create!(name: 'Coke', domain: 'coke.com.br')
     pepsi_company = Company.create!(name: 'Pepsi', domain: 'pepsi.com.br')
