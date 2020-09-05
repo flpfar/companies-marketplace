@@ -47,4 +47,14 @@ feature 'User views notifications' do
     expect(seller.notifications.unseen).to be_empty
     expect(seller.notifications.first).to be_seen
   end
+
+  scenario 'and has none' do
+    Company.create!(name: 'Coke', domain: 'coke.com')
+    user = User.create!(name: 'User', social_name: 'User', email: 'user@coke.com', password: '123123')
+
+    login_as user, scope: :user
+    visit root_path
+
+    expect(page).to have_no_css('.notifications')
+  end
 end
