@@ -12,7 +12,7 @@ feature 'User views sale posts' do
     coke_company = Company.create!(name: 'Coke', domain: 'coke.com.br')
     eletro_category = Category.create!(name: 'Eletrodomésticos', company: coke_company)
     user_disabled = User.create!(email: 'maria@coke.com.br', password: '123123')
-    user_bruno = User.create!(name: 'Bruno', social_name: 'Bruno', birth_date: '18/10/90', role: 'Gerente',
+    user_bruno = User.create!(name: 'Bruno', birth_date: '18/10/90', role: 'Gerente',
                               department: 'T.I', email: 'bruno@coke.com.br', password: '123123')
     sale_post_refrigerator = SalePost.create!(title: 'Geladeira Brastemp', price: '800', user: user_bruno,
                                               description: 'Geladeira semi nova, em ótimo estado',
@@ -52,7 +52,7 @@ feature 'User views sale posts' do
     coke_company = Company.create!(name: 'Coke', domain: 'coke.com.br')
     eletro_category = Category.create!(name: 'Eletrodomésticos', company: coke_company)
     user_disabled = User.create!(email: 'maria@coke.com.br', password: '123123')
-    user_bruno = User.create!(name: 'Bruno', social_name: 'Bruno', birth_date: '18/10/90', role: 'Gerente',
+    user_bruno = User.create!(name: 'Bruno', birth_date: '18/10/90', role: 'Gerente',
                               department: 'T.I', email: 'bruno@coke.com.br', password: '123123')
     sale_post_refrigerator = SalePost.create!(title: 'Geladeira Brastemp', price: '800', user: user_bruno,
                                               description: 'Geladeira semi nova, em ótimo estado',
@@ -80,12 +80,10 @@ feature 'User views sale posts' do
     eletro_pepsi_category = Category.create!(name: 'Eletrodomésticos', company: pepsi_company)
     furniture_pepsi_category = Category.create!(name: 'Móveis', company: pepsi_company)
     disabled_user = User.create!(email: 'maria@coke.com.br', password: '123123')
-    user_bruno = User.create!(name: 'Bruno', social_name: 'Bruno',
-                              role: 'Gerente', department: 'T.I', birth_date: '18/10/90',
-                              email: 'bruno@coke.com.br', password: '123123')
-    user_diego = User.create!(name: 'Diego', social_name: 'Diego',
-                              role: 'Auxiliar', department: 'Comercial', birth_date: '18/10/90',
-                              email: 'diego@pepsi.com.br', password: '123123')
+    user_bruno = User.create!(name: 'Bruno', email: 'bruno@coke.com.br', password: '123123',
+                              role: 'Gerente', department: 'T.I', birth_date: '18/10/90')
+    user_diego = User.create!(name: 'Diego', email: 'diego@pepsi.com.br', password: '123123',
+                              role: 'Auxiliar', department: 'Comercial', birth_date: '18/10/90')
     sale_post_refrigerator = SalePost.create!(title: 'Geladeira Brastemp', price: '800', user: user_bruno,
                                               description: 'Geladeira semi nova, em ótimo estado',
                                               category: eletro_coke_category)
@@ -112,10 +110,10 @@ feature 'User views sale posts' do
     eletro_category = Category.create!(name: 'Eletrodomésticos', company: coke_company)
     furniture_category = Category.create!(name: 'Móveis', company: coke_company)
     disabled_user = User.create!(email: 'maria@coke.com.br', password: '123123')
-    user_bruno = User.create!(name: 'Bruno', social_name: 'Bruno', birth_date: '18/10/90',
+    user_bruno = User.create!(name: 'Bruno', birth_date: '18/10/90',
                               role: 'Gerente', department: 'T.I',
                               email: 'bruno@coke.com.br', password: '123123')
-    user_diego = User.create!(name: 'Diego', social_name: 'Diego', birth_date: '18/10/90',
+    user_diego = User.create!(name: 'Diego', birth_date: '18/10/90',
                               role: 'Auxiliar', department: 'Comercial',
                               email: 'diego@coke.com.br', password: '123123')
     sale_post_geladeira = SalePost.create!(title: 'Geladeira Brastemp', price: '800', user: user_bruno,

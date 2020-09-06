@@ -48,7 +48,7 @@ RSpec.describe Company, type: :model do
     end
 
     it 'domain must be unique' do
-      company1 = Company.create!(name: 'Coke', domain: 'coke.com')
+      Company.create!(name: 'Coke', domain: 'coke.com')
       company2 = Company.new(name: 'Aqua', domain: 'coke.com')
 
       company2.valid?

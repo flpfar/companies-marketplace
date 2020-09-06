@@ -5,7 +5,7 @@ feature 'User searches posts' do
     scenario 'by title' do
       company = Company.create!(name: 'Company', domain: 'company.com')
       games_category = company.categories.create!(name: 'Games')
-      user = User.create!(name: 'User', social_name: 'User', email: 'user@company.com', password: '123123')
+      user = User.create!(name: 'User', email: 'user@company.com', password: '123123')
       user.sale_posts.create!(title: 'Playstation 4', description: 'Novo na caixa', category: games_category,
                               price: 1200)
       user.sale_posts.create!(title: 'Xbox One', description: 'Recondicionado', category: games_category,
@@ -27,7 +27,7 @@ feature 'User searches posts' do
       company = Company.create!(name: 'Company', domain: 'company.com')
       games_category = company.categories.create!(name: 'Games')
       eletro_category = company.categories.create!(name: 'Eletrodomésticos')
-      user = User.create!(name: 'User', social_name: 'User', email: 'user@company.com', password: '123123')
+      user = User.create!(name: 'User', email: 'user@company.com', password: '123123')
       user.sale_posts.create!(title: 'Playstation 4', description: 'Novo na caixa', category: games_category,
                               price: 1200)
       user.sale_posts.create!(title: 'Xbox One', description: 'Recondicionado', category: games_category,
@@ -53,7 +53,7 @@ feature 'User searches posts' do
       company = Company.create!(name: 'Company', domain: 'company.com')
       games_category = company.categories.create!(name: 'Games')
       eletro_category = company.categories.create!(name: 'Eletrodomésticos')
-      user = User.create!(name: 'User', social_name: 'User', email: 'user@company.com', password: '123123')
+      user = User.create!(name: 'User', email: 'user@company.com', password: '123123')
       user.sale_posts.create!(title: 'Playstation 4', description: 'Novo na caixa', category: games_category,
                               price: 1200)
       user.sale_posts.create!(title: 'Xbox One', description: 'Recondicionado', category: games_category,
@@ -79,7 +79,7 @@ feature 'User searches posts' do
   scenario 'without filling the input' do
     company = Company.create!(name: 'Company', domain: 'company.com')
     games_category = company.categories.create!(name: 'Games')
-    user = User.create!(name: 'User', social_name: 'User', email: 'user@company.com', password: '123123')
+    user = User.create!(name: 'User', email: 'user@company.com', password: '123123')
     user.sale_posts.create!(title: 'Playstation 4', description: 'Novo na caixa', category: games_category,
                             price: 1200)
     user.sale_posts.create!(title: 'Xbox One', description: 'Recondicionado', category: games_category,

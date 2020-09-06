@@ -24,7 +24,7 @@ feature 'User creates sale post' do
     company = Company.create!(name: 'Coke', domain: 'coke.com.br')
     Category.create!(name: 'Eletrodomésticos', company: company)
     Category.create!(name: 'Smartphones', company: company)
-    user_diego = User.create!(name: 'Diego', social_name: 'Diego', birth_date: '18/10/90',
+    user_diego = User.create!(name: 'Diego', birth_date: '18/10/90',
                               role: 'Auxiliar', department: 'Comercial',
                               email: 'diego@coke.com.br', password: '123123')
 
@@ -59,7 +59,7 @@ feature 'User creates sale post' do
     Category.create!(name: 'Smartphones', company: company_coke)
     Category.create!(name: 'Móveis', company: company_pepsi)
     Category.create!(name: 'Automóveis', company: company_pepsi)
-    user_diego = User.create!(name: 'Diego', social_name: 'Diego', birth_date: '18/10/90',
+    user_diego = User.create!(name: 'Diego', birth_date: '18/10/90',
                               role: 'Auxiliar', department: 'Comercial',
                               email: 'diego@coke.com.br', password: '123123')
 
@@ -72,7 +72,7 @@ feature 'User creates sale post' do
   scenario 'and attributes cant be blank' do
     company = Company.create!(name: 'Coke', domain: 'coke.com.br')
     Category.create!(name: 'Eletrodomésticos', company: company)
-    user_diego = User.create!(name: 'Diego', social_name: 'Diego', birth_date: '18/10/90',
+    user_diego = User.create!(name: 'Diego', birth_date: '18/10/90',
                               role: 'Auxiliar', department: 'Comercial',
                               email: 'diego@coke.com.br', password: '123123')
 
@@ -88,7 +88,7 @@ feature 'User creates sale post' do
 
   scenario 'and is redirected to root when no categories were created' do
     Company.create!(name: 'Coke', domain: 'coke.com.br')
-    user_diego = User.create!(name: 'Diego', social_name: 'Diego', birth_date: '18/10/90',
+    user_diego = User.create!(name: 'Diego', birth_date: '18/10/90',
                               role: 'Auxiliar', department: 'Comercial',
                               email: 'diego@coke.com.br', password: '123123')
 

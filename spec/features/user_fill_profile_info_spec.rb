@@ -9,7 +9,6 @@ feature 'user fill profile info' do
     visit root_path
     click_on 'preencha seu perfil'
     fill_in 'Nome', with: 'Maria Antônia'
-    fill_in 'Nome social', with: 'Toninha'
     fill_in 'Data de nascimento', with: '01/01/1991'
     fill_in 'Cargo', with: 'Gerente'
     fill_in 'Setor', with: 'Vendas'
@@ -17,7 +16,7 @@ feature 'user fill profile info' do
 
     expect(current_path).to eq(root_path)
     expect(page).to have_content('A sua conta foi atualizada com sucesso')
-    expect(page).to have_content('Toninha')
+    expect(page).to have_content('Maria Antônia')
   end
 
   scenario 'and fields can not be empty' do
@@ -29,7 +28,7 @@ feature 'user fill profile info' do
     click_on 'preencha seu perfil'
     click_on 'Enviar'
 
-    expect(page).to have_content('não pode ficar em branco', count: 5)
+    expect(page).to have_content('não pode ficar em branco', count: 4)
   end
 
   scenario 'and is able to see a link to publish a product for sale' do
@@ -40,7 +39,6 @@ feature 'user fill profile info' do
     visit root_path
     click_on 'preencha seu perfil'
     fill_in 'Nome', with: 'Maria Antônia'
-    fill_in 'Nome social', with: 'Toninha'
     fill_in 'Data de nascimento', with: '01/01/1991'
     fill_in 'Cargo', with: 'Gerente'
     fill_in 'Setor', with: 'Vendas'

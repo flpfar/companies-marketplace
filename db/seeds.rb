@@ -15,7 +15,7 @@ categories_array.each do |category|
   Category.create!(name: category, company: company)
 end
 
-user = User.create!(name: 'User', social_name: 'User',
+user = User.create!(name: 'User',
                     role: 'Dev', department: 'T.I', birth_date: '18/10/90',
                     email: 'user@company.com', password: '123123')
 

@@ -4,8 +4,8 @@ feature 'Seller finishes an order' do
   scenario 'with a completed status' do
     company = Company.create!(name: 'Coke', domain: 'coke.com')
     category = company.categories.create!(name: 'Games')
-    seller = User.create!(name: 'Seller', social_name: 'Seller', email: 'seller@coke.com', password: '123123')
-    buyer = User.create!(name: 'Buyer', social_name: 'Buyer', email: 'buyer@coke.com', password: '123123')
+    seller = User.create!(name: 'Seller', email: 'seller@coke.com', password: '123123')
+    buyer = User.create!(name: 'Buyer', email: 'buyer@coke.com', password: '123123')
     post = seller.sale_posts.create!(title: 'Xbox One', price: 1000, description: 'Xbox one com 2 controles',
                                      category: category)
 
@@ -15,7 +15,7 @@ feature 'Seller finishes an order' do
     click_on 'Sair'
     login_as seller, scope: :user
     visit root_path
-    click_on seller.social_name
+    click_on seller.name
     click_on seller.notifications.first.body
     click_on 'Concluir venda'
     fill_in 'Valor final', with: 1020
@@ -33,8 +33,8 @@ feature 'Seller finishes an order' do
   scenario 'with a completed without filling the final price' do
     company = Company.create!(name: 'Coke', domain: 'coke.com')
     category = company.categories.create!(name: 'Games')
-    seller = User.create!(name: 'Seller', social_name: 'Seller', email: 'seller@coke.com', password: '123123')
-    buyer = User.create!(name: 'Buyer', social_name: 'Buyer', email: 'buyer@coke.com', password: '123123')
+    seller = User.create!(name: 'Seller', email: 'seller@coke.com', password: '123123')
+    buyer = User.create!(name: 'Buyer', email: 'buyer@coke.com', password: '123123')
     post = seller.sale_posts.create!(title: 'Xbox One', price: 1000, description: 'Xbox one com 2 controles',
                                      category: category)
 
@@ -44,7 +44,7 @@ feature 'Seller finishes an order' do
     click_on 'Sair'
     login_as seller, scope: :user
     visit root_path
-    click_on seller.social_name
+    click_on seller.name
     click_on seller.notifications.first.body
     click_on 'Concluir venda'
     click_on 'Finalizar'
@@ -61,8 +61,8 @@ feature 'Seller finishes an order' do
   scenario 'with a canceled status' do
     company = Company.create!(name: 'Coke', domain: 'coke.com')
     category = company.categories.create!(name: 'Games')
-    seller = User.create!(name: 'Seller', social_name: 'Seller', email: 'seller@coke.com', password: '123123')
-    buyer = User.create!(name: 'Buyer', social_name: 'Buyer', email: 'buyer@coke.com', password: '123123')
+    seller = User.create!(name: 'Seller', email: 'seller@coke.com', password: '123123')
+    buyer = User.create!(name: 'Buyer', email: 'buyer@coke.com', password: '123123')
     post = seller.sale_posts.create!(title: 'Xbox One', price: 1000, description: 'Xbox one com 2 controles',
                                      category: category)
     Order.create!(item_name: post.title, item_description: post.description, sale_post: post,
@@ -70,7 +70,7 @@ feature 'Seller finishes an order' do
 
     login_as seller, scope: :user
     visit root_path
-    click_on seller.social_name
+    click_on seller.name
     click_on seller.notifications.first.body
     click_on 'Cancelar venda'
 

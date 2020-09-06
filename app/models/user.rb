@@ -8,7 +8,7 @@ class User < ApplicationRecord
   has_many :sale_posts
   has_many :notifications
 
-  validates :name, :social_name, :birth_date, :role, :department, presence: true, on: :update
+  validates :name, :birth_date, :role, :department, presence: true, on: :update
 
   before_validation :assign_company_by_email
 

@@ -4,8 +4,8 @@ feature 'User views notifications' do
   scenario 'successfully' do
     company = Company.create!(name: 'Coke', domain: 'coke.com')
     category = company.categories.create!(name: 'Games')
-    seller = User.create!(name: 'Seller', social_name: 'Seller', email: 'seller@coke.com', password: '123123')
-    buyer = User.create!(name: 'Buyer', social_name: 'Buyer', email: 'buyer@coke.com', password: '123123')
+    seller = User.create!(name: 'Seller', email: 'seller@coke.com', password: '123123')
+    buyer = User.create!(name: 'Buyer', email: 'buyer@coke.com', password: '123123')
     post1 = seller.sale_posts.create!(title: 'Xbox One', price: 1000, description: 'Xbox one com 2 controles',
                                       category: category)
     post2 = seller.sale_posts.create!(title: 'Xbox One', price: 1000, description: 'Xbox one com 2 controles',
@@ -17,7 +17,7 @@ feature 'User views notifications' do
 
     login_as seller, scope: :user
     visit root_path
-    click_on seller.social_name
+    click_on seller.name
 
     expect(page).to have_css('.notifications')
     within '.notifications' do
@@ -31,8 +31,8 @@ feature 'User views notifications' do
   scenario 'and visits notification' do
     company = Company.create!(name: 'Coke', domain: 'coke.com')
     category = company.categories.create!(name: 'Games')
-    seller = User.create!(name: 'Seller', social_name: 'Seller', email: 'seller@coke.com', password: '123123')
-    buyer = User.create!(name: 'Buyer', social_name: 'Buyer', email: 'buyer@coke.com', password: '123123')
+    seller = User.create!(name: 'Seller', email: 'seller@coke.com', password: '123123')
+    buyer = User.create!(name: 'Buyer', email: 'buyer@coke.com', password: '123123')
     post = seller.sale_posts.create!(title: 'Xbox One', price: 1000, description: 'Xbox one com 2 controles',
                                      category: category)
     Order.create!(item_name: post.title, item_description: post.description, sale_post: post,
@@ -40,7 +40,7 @@ feature 'User views notifications' do
 
     login_as seller, scope: :user
     visit root_path
-    click_on seller.social_name
+    click_on seller.name
     click_on seller.notifications.first.body
 
     expect(page).to have_no_css('.notifications')
@@ -53,7 +53,7 @@ feature 'User views notifications' do
 
   scenario 'and has none' do
     Company.create!(name: 'Coke', domain: 'coke.com')
-    user = User.create!(name: 'User', social_name: 'User', email: 'user@coke.com', password: '123123')
+    user = User.create!(name: 'User', email: 'user@coke.com', password: '123123')
 
     login_as user, scope: :user
     visit root_path
