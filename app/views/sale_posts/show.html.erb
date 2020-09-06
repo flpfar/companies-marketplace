@@ -1,7 +1,14 @@
-<div class="post-container">
-  <%= cover_image(@sale_post) %>
-  <%= @sale_post.title %>
-  <%= @sale_post.description %>
+<article class="post-container text-gray-900">
+  <h1 class="text-xl font-bold mb-4">
+    <%= @sale_post.title %>
+  </h1>
+  <div class="image-container bg-gray-300 flex justify-center w-full h-64">
+    <%= cover_image(@sale_post, classes: "max-w-4xl object-contain") %>
+  </div>
+  
+  <p>
+    <%= @sale_post.description %>
+  </p>
   <%= @sale_post.category.name %>
   <%= number_to_currency @sale_post.price %>
 
@@ -12,7 +19,10 @@
     <%= @sale_post.user.department %>
   </div>
 
-  <div class="comments-container">
+  
+</article>
+
+<div class="comments-container">
     <h2>Comentários</h2>
 
     <%= 'Não há comentários' if @sale_post.comments.empty? %>
@@ -29,7 +39,6 @@
       <%= f.submit 'Enviar' %>
     <% end %>
   </div>
-</div>
 
 <% if current_user.enabled? && current_user != @sale_post.user %>
   <%= link_to "Comprar", sale_post_orders_path(@sale_post.id), method: :post %>

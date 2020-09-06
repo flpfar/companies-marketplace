@@ -22,7 +22,7 @@
   </div>
   
   <div class="flex items-center">
-    <%= link_to "Criar um anúncio", new_sale_post_path, class: "mx-10 border border-gray-400 text-gray-400 hover:bg-gray-400 hover:text-gray-900 rounded px-3 py-1" if current_user.enabled? %>
+    <%= link_to "Criar um anúncio", new_sale_post_path, class: "mx-10 border border-gray-200 text-gray-200 hover:bg-gray-200 hover:text-gray-900 rounded px-3 py-1" if current_user.enabled? %>
     <div>
       <%= link_to current_user, class: "hover:underline" do %>
         <%= show_user_title %>
