@@ -13,7 +13,7 @@
   <%= number_to_currency @sale_post.price %>
 
   <div class="post-author">
-    <%= @sale_post.user.name %>
+    <%= link_to @sale_post.user.name, profile_user_path(@sale_post.user) %>
     <%= @sale_post.user.email %>
     <%= @sale_post.user.role %>
     <%= @sale_post.user.department %>
