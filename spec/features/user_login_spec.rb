@@ -27,7 +27,6 @@ feature 'User logs in' do
     click_on 'Entrar'
     click_on 'Sair'
 
-    expect(page).to have_content('Para continuar, faça login ou registre-se')
     expect(current_path).to eq(new_user_session_path)
   end
 
