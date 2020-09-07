@@ -31,8 +31,8 @@ feature 'Seller controls sale post' do
       seller = User.create!(name: 'Seller', email: 'seller@abc.com', password: '123123')
       buyer = User.create!(name: 'Buyer', email: 'buyer@abc.com', password: '123123')
       post = seller.sale_posts.create!(title: 'xbox one', description: 'brand new', price: 800, category: games)
-      order = post.orders.create!(item_name: post.title, item_description: post.description, posted_price: post.price,
-                                  buyer: buyer, seller: seller)
+      post.orders.create!(item_name: post.title, item_description: post.description, posted_price: post.price,
+                          buyer: buyer, seller: seller)
 
       login_as seller, scope: :user
       visit root_path

@@ -10,8 +10,7 @@ class SalePostsController < ApplicationController
     @sale_post = SalePost.new
     @categories = Category.where(company_id: current_user.company_id)
     if @categories.empty?
-      message = 'Não há categorias cadastradas na sua empresa. Contate o administrador'
-      redirect_to root_path, alert: message
+      redirect_to root_path, alert: 'Não há categorias cadastradas na sua empresa. Contate o administrador'
     end
   end
 
@@ -20,16 +19,11 @@ class SalePostsController < ApplicationController
     @categories = current_user.company.categories
 
     if @categories.empty?
-      message = 'Não há categorias cadastradas na sua empresa. Contate o administrador'
-      redirect_to root_path, alert: message
-      return
+      flash[:alert] = 'Não há categorias cadastradas na sua empresa. Contate o administrador'
+      return redirect_to root_path
     end
 
-    if @sale_post.save
-      redirect_to @sale_post, notice: 'Anúncio criado com sucesso'
-    else
-      render :new
-    end
+    @sale_post.save ? redirect_to(@sale_post, notice: 'Anúncio criado com sucesso') : render(:new)
   end
 
   def search
