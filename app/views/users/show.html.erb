@@ -1,13 +1,14 @@
 <div class="profile-container">
-  <% if current_user == @user %>
-    <h1>My Profile</h1>
-  <% else %>
-    <h1><%= @user.name %></h1>
-  <% end %>
+  <h1>My Account</h1>
 </div>
 
 <div class="notifications-unseen">
   <% @user.notifications.unseen.each do |notification| %>
     <%= link_to notification.body, notification_seen_path(notification), method: :post %>
   <% end %>
+</div>
+
+<div class="my-posts">
+  <h2>Meus anúncios</h2>
+  <%= render partial: 'shared/sale_post_list', locals: { posts: @user.sale_posts } %>
 </div>

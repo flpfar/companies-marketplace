@@ -39,6 +39,29 @@ class SalePostsController < ApplicationController
     )
   end
 
+  def enable
+    @post = SalePost.find(params[:id])
+
+    return redirect_to sale_post_path(@post) if current_user != @post.user
+
+    @post.enabled!
+    redirect_to @post, notice: 'Anúncio reativado com sucesso'
+  end
+
+  def disable
+    @post = SalePost.find(params[:id])
+
+    return redirect_to sale_post_path(@post) if current_user != @post.user
+
+    unless @post.orders.in_progress.empty?
+      flash[:alert] = 'Este anúncio possui pedidos de compra pendentes. Finalize-os primeiro e tente novamente'
+      return redirect_to sale_post_path(@post)
+    end
+
+    @post.disabled!
+    redirect_to sale_post_path(@post), notice: 'Anúncio desativado com sucesso'
+  end
+
   private
 
   def sale_post_params
