@@ -18,7 +18,7 @@ feature 'User buys a product' do
     post.reload
 
     expect(page).to have_content('Solicitação de compra enviada. Aguarde aprovação do vendedor')
-    expect(post).to be_disabled
+    expect(post).to be_enabled
     expect(post.orders.first).to be_in_progress
     expect(page).to have_content('Em andamento')
     expect(current_path).to eq('/orders/1')

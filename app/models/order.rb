@@ -5,15 +5,14 @@ class Order < ApplicationRecord
 
   has_many :messages
 
-  after_create :disable_post_and_send_notification
+  after_create :send_notification
 
   enum status: { in_progress: 0, completed: 10, canceled: 20 }
 
   private
 
-  def disable_post_and_send_notification
+  def send_notification
     sale_post.user.notifications.create(body: "Solicitação de compra pendente em anúncio #{sale_post.title}",
                                         path: "/orders/#{id}")
-    sale_post.disabled!
   end
 end
