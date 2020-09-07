@@ -15,7 +15,9 @@ class OrdersController < ApplicationController
     end
   end
 
-  def show; end
+  def show
+    @message = Message.new
+  end
 
   def complete
     final_price = params[:final_price]

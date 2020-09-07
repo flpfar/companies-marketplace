@@ -3,6 +3,8 @@ class Order < ApplicationRecord
   belongs_to :buyer, class_name: 'User'
   belongs_to :seller, class_name: 'User'
 
+  has_many :messages
+
   after_create :disable_post_and_send_notification
 
   enum status: { in_progress: 0, completed: 10, canceled: 20 }

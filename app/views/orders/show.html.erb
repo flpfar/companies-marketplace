@@ -4,6 +4,18 @@
 <%= @order.item_description %>
 <%= number_to_currency @order.posted_price %>
 
+<div class="messages-container">
+  <%= form_with model: [@order, @message], local: true do |f| %>
+    <%= f.text_field :body, placeholder: 'Escreva uma mensagem...' %>
+    <%= f.submit 'Enviar' %>
+  <% end %>
+
+  <% @order.messages.each do |message| %>
+    <%= message.author.name %>
+    <%= message.body %>
+  <% end %>
+</div>
+
 <% if current_user == @order.seller && @order.in_progress? %>
   <div class="seller-controllers">
     <button class="complete-btn">Concluir venda</button>

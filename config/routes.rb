@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   end
   resources :categories, only: [:index, :show]
   resources :orders, only: [:show] do
+    resources :messages, only: [:create]
     member do
       post 'complete'
       post 'cancel'
