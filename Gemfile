@@ -46,7 +46,8 @@ group :development do
   gem 'spring-watcher-listen', '~> 2.0.0'
 
   gem 'rails-erd'
-  gem 'faker', '~> 2.13'
+  gem 'faker', require: false
+  gem 'hirb'
   gem 'guard-livereload'
 end
 

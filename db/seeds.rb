@@ -1,28 +1,64 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
-#   Character.create(name: 'Luke', movie: movies.first)
+# Creates a company named Coshop with domain 'coshop.com' and 9 categories
+# Coshop has 6 random users, and one user 'master@coshop.com'. All of them have the password '123123'
+require 'faker'
 
-company = Company.create!(name: 'Company', domain: 'company.com')
+Faker::Config.locale = :'pt-BR'
+I18n.reload!
+
+coshop = Company.create!(name: 'Coshop', domain: 'coshop.com')
 
 categories_array = ['Automotivo', 'Alimentos e Bebidas', 'Eletrodomésticos', 'Games e Consoles',
                     'Celulares', 'Informática', 'Eletrônicos', 'Livros', 'Móveis'].sort
 
 categories_array.each do |category|
-  Category.create!(name: category, company: company)
+  Category.create!(name: category, company: coshop)
 end
 
-user = User.create!(name: 'User',
-                    role: 'Dev', department: 'T.I', birth_date: '18/10/90',
-                    email: 'user@company.com', password: '123123')
+master = User.create!(
+  name: 'Master Ipsum',
+  role: 'Developer',
+  department: 'Tecnologia',
+  birth_date: '06/02/1990',
+  email: 'master@coshop.com',
+  password: '123123'
+)
+
+6.times do
+  name = Faker::Name.unique.name
+  User.create!(
+    name: name,
+    role: Faker::Job.title,
+    department: Faker::Job.field,
+    birth_date: '16/10/1988',
+    email: "#{name.parameterize}@coshop.com",
+    password: '123123'
+  )
+end
 
 eletro_category = Category.find_by(name: 'Eletrodomésticos')
 
-SalePost.create!(title: 'Geladeira Brastemp', price: '800', user: user,
-                 description: 'Geladeira semi nova, em ótimo estado',
-                 category: eletro_category)
-SalePost.create!(title: 'Fogão Dako', price: '300', user: user,
-                 description: 'Fogão ideal pra todos', category: eletro_category)
+SalePost.create!(
+  title: 'Geladeira Brastemp',
+  price: '800',
+  description: Faker::Company.catch_phrase,
+  user_id: master.id,
+  category_id: eletro_category.id
+).cover.attach(io: File.open(Rails.root.join('spec/support/geladeira.jpg')), filename: 'geladeira.jpg')
+
+SalePost.create!(
+  title: 'Fogão Dako',
+  price: '300',
+  description: Faker::Lorem.paragraph,
+  user_id: master.id,
+  category_id: eletro_category.id
+).cover.attach(io: File.open(Rails.root.join('spec/support/fogao.jpg')), filename: 'fogao.jpg')
+
+14.times do
+  SalePost.create!(
+    title: Faker::Commerce.product_name,
+    price: rand(500..1500),
+    description: Faker::Lorem.paragraph,
+    user_id: rand(1..7),
+    category_id: rand(1..9)
+  )
+end
