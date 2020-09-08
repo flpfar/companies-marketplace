@@ -1,38 +1,58 @@
-<article class="post-container text-gray-900">
-  <h1 class="text-xl font-bold mb-4">
-    <%= @sale_post.title %>
-  </h1>
-  <div class="image-container bg-gray-300 flex justify-center w-full h-64">
+<section class="post-container text-gray-900 grid grid-cols-2 mb-12">
+  <div class="post-details h-screen/2 flex flex-col">
+    <h1 class="text-2xl font-bold mb-2">
+      <%= @sale_post.title %>
+    </h1>
+    <p class="post-author text-gray-600 text-sm mb-2">
+      <span>Anunciado por: </span>
+      <%= link_to @sale_post.user.name, profile_user_path(@sale_post.user), class: "underline" %> 
+      em <%= l @sale_post.created_at, format: :short %>
+    </p>
+  
+    <p class="mb-2">
+      <%= @sale_post.description %>
+    </p>
+    <p class="text-sm mb-4">
+      <span >Categoria: </span>
+      <%= link_to @sale_post.category.name, @sale_post.category, class: "underline" %>
+    </p>
+    <div class="buy-price mt-auto mb-4">
+      <div class="text-3xl mb-4"><%= number_to_currency @sale_post.price %></div>
+  
+      <% if current_user == @sale_post.user %>
+        <div class="seller-controllers">
+          <%= enable_disable_button(@sale_post) %>
+        </div>
+      <% end %>
+  
+      <% if current_user.enabled? && current_user != @sale_post.user %>
+        <div class="">
+          <%= link_to "Comprar", sale_post_orders_path(@sale_post.id), method: :post, class: "bg-green-700 hover:bg-green-600 text-white p-2 rounded" %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+
+  <div class="image-container bg-gray-300 flex justify-center w-full h-screen/2">
     <%= cover_image(@sale_post, classes: "max-w-4xl object-contain") %>
   </div>
-  
-  <p>
-    <%= @sale_post.description %>
-  </p>
-  <%= @sale_post.category.name %>
-  <%= number_to_currency @sale_post.price %>
-
-  <div class="post-author">
-    <%= link_to @sale_post.user.name, profile_user_path(@sale_post.user) %>
-    <%= @sale_post.user.email %>
-    <%= @sale_post.user.role %>
-    <%= @sale_post.user.department %>
-  </div>
-
-  <div class="seller-controllers">
-    <%= enable_disable_button(@sale_post) %>
-  </div>
-</article>
+</section>
 
 <div class="comments-container">
-    <h2>Comentários</h2>
+    <h2 class="text-xl font-bold mb-2">Comentários</h2>
 
     <%= 'Não há comentários' if @sale_post.comments.empty? %>
 
     <% @sale_post.comments.each do |comment| %>
-      <div class="comment-item">
-        <%= comment.user.name %>
-        <%= comment.body %>
+      <div class="comment-item text-sm mb-4">
+        <header class="comment-header">
+          <%= link_to comment.user.name, profile_user_path(comment.user), class: "font-bold" %>
+          <span class="text-xs text-gray-800"><%= comment.user.department %></span>
+        </header>
+        <p class="comment-body">
+          <%= comment.body %>
+          <span class="text-xs text-gray-600 ml-1"><%= l comment.created_at, format: :short %></span>
+        </p>
       </div>
     <% end %>
 
@@ -41,7 +61,3 @@
       <%= f.submit 'Enviar' %>
     <% end %>
   </div>
-
-<% if current_user.enabled? && current_user != @sale_post.user %>
-  <%= link_to "Comprar", sale_post_orders_path(@sale_post.id), method: :post %>
-<% end %>

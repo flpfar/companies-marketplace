@@ -6,8 +6,9 @@ module SalePostsHelper
   end
 
   def enable_disable_button(post)
-    return link_to 'Desativar anúncio', disable_sale_post_path(post), method: :post if post.enabled?
+    classes = 'bg-gray-400 hover:bg-gray-300 p-1 rounded text-red-800'
+    return link_to 'Desativar anúncio', disable_sale_post_path(post), method: :post, class: classes if post.enabled?
 
-    link_to 'Reativar anúncio', enable_sale_post_path(post), method: :post
+    link_to 'Reativar anúncio', enable_sale_post_path(post), method: :post, class: classes
   end
 end

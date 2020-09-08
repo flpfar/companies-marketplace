@@ -46,9 +46,6 @@ feature 'User creates sale post' do
       expect(page).to have_content('R$ 300,00')
       expect(page).to have_css('img[src*="test-image.jpg"]')
       expect(page).to have_content(user_diego.name)
-      expect(page).to have_content(user_diego.email)
-      expect(page).to have_content(user_diego.role)
-      expect(page).to have_content(user_diego.department)
     end
   end
 
