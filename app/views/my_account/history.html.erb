@@ -1,0 +1,15 @@
+<section class="sale-orders">
+  <h2>Histórico de vendas</h2>
+  <% @sale_orders.each do |sale| %>
+    <%= sale.item_name %>
+    <%= sale.buyer.name %>
+  <% end %>
+</section>
+
+<section class="buy-orders">
+  <h2>Histórico de compras</h2>
+  <% @buy_orders.each do |buy| %>
+    <%= buy.item_name %>
+    <%= buy.seller.name %>
+  <% end %>
+</section>

@@ -2,6 +2,12 @@
   <h1>My Account</h1>
 </div>
 
+<nav>
+  <ul>
+    <li><%= link_to 'Meu histórico', history_my_account_path %></li>
+  </ul>
+</nav>
+
 <div class="notifications-unseen">
   <% @user.notifications.unseen.each do |notification| %>
     <%= link_to notification.body, notification_seen_path(notification), method: :post %>

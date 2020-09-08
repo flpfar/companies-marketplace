@@ -7,6 +7,8 @@ class User < ApplicationRecord
   belongs_to :company
   has_many :sale_posts
   has_many :notifications
+  has_many :sale_orders, class_name: 'Order', foreign_key: 'seller_id'
+  has_many :buy_orders, class_name: 'Order', foreign_key: 'buyer_id'
 
   validates :name, :birth_date, :role, :department, presence: true, on: :update
 

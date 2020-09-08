@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   devise_for :users, controllers: { registrations: 'registrations' }
-  resources :users, only: [:show, :edit, :update] do
+  resources :users, only: [:show] do
     get 'profile', on: :member
   end
   resources :sale_posts, only: [:show, :new, :create] do
@@ -20,6 +20,9 @@ Rails.application.routes.draw do
   end
   resources :notifications, only: [] do
     post 'seen'
+  end
+  resource :my_account, controller: :my_account, only: [] do
+    get :history, on: :member
   end
 
   root to: 'home#index'
