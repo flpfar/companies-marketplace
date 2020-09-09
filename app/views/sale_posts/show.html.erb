@@ -41,9 +41,9 @@
 <div class="comments-container">
     <h2 class="text-xl font-bold mb-2">Comentários</h2>
 
-    <%= 'Não há comentários' if @sale_post.comments.empty? %>
+    <%= 'Não há comentários' if @comments.empty? %>
 
-    <% @sale_post.comments.each do |comment| %>
+    <% @comments.each do |comment| %>
       <div class="comment-item text-sm mb-4">
         <header class="comment-header">
           <%= link_to comment.user.name, profile_user_path(comment.user), class: "font-bold" %>
