@@ -1,8 +1,11 @@
 <%= render 'account-nav' %>
 
 <section class="profile-container text-gray-900">
-  <div class="notifications-unseen">
+  <div class="notifications-unseen mb-4">
     <h2 class="text-lg font-bold mb-2">Notificações não lidas (<%= @user.notifications.unseen.size %>)</h2>
+    <% if @user.notifications.unseen.empty? %>
+      <p class="text-sm">Não há notificações não lidas a serem exibidas</p>
+    <% end %>
     <ul>
       <% @user.notifications.unseen.each do |notification| %>
         <li class="text-gray-800 text-sm">
@@ -10,5 +13,22 @@
         </li>
       <% end %>
     </ul>
+  </div>
+
+  <div class="my-orders-in-progress">
+    <h2 class="text-lg font-bold mb-2">Negociações em andamento</h2>
+    <% if @buy_orders.present? %>
+      <div class="buy-orders px-2 mb-4">
+        <h3 class="font-bold mb-1">Compra:</h3>
+        <%= render partial: 'orders-list', locals: { orders: @buy_orders } %>
+      </div>
+    <% end %>
+
+    <% if @sale_orders.present? %>
+      <div class="sale-orders px-2">
+        <h3 class="font-bold mb-1">Venda:</h3>
+        <%= render partial: 'orders-list', locals: { orders: @sale_orders } %>
+      </div>
+    <% end %>
   </div>
 </section>

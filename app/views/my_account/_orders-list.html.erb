@@ -1,0 +1,17 @@
+<ul class="orders-list flex flex-wrap gap-2">
+  <% if orders.empty? %>
+    <p class="text-sm">Sem negociações a serem exibidas.</p>
+  <% end %>
+  <% orders.each do |order| %>
+
+    <%= link_to order do %>
+      <li class="orders-item border p-4 hover:bg-gray-100">
+        <h5 class="font-bold"><%= order.item_name %></h5>
+        <span class="">
+          <%= current_user == order.buyer ? order.seller.name : order.buyer.name %>
+        </span>
+      </li>
+    <% end %>
+
+  <% end %>
+</ul>
