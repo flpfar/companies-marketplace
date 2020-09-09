@@ -32,7 +32,6 @@ class OrdersController < ApplicationController
 
   def cancel
     @order.canceled!
-    @order.sale_post.enabled!
     @order.buyer.notifications.create(
       body: "O vendedor cancelou seu pedido de compra para '#{@order.item_name}'", path: order_path(@order)
     )
