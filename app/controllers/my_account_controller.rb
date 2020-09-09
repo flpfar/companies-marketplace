@@ -6,8 +6,8 @@ class MyAccountController < ApplicationController
   end
 
   def history
-    @sale_orders = current_user.sale_orders.where.not(status: :in_progress)
-    @buy_orders = current_user.buy_orders.where.not(status: :in_progress)
+    @sale_orders = current_user.sale_orders.where.not(status: :in_progress).includes([:buyer])
+    @buy_orders = current_user.buy_orders.where.not(status: :in_progress).includes([:seller, :buyer])
   end
 
   def sale_posts

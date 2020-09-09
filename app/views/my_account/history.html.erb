@@ -1,19 +1,13 @@
 <%= render 'account-nav' %>
 
 <section class="orders-container">
-  <section class="sale-orders">
-    <h2>Histórico de vendas</h2>
-    <% @sale_orders.each do |sale| %>
-      <%= sale.item_name %>
-      <%= sale.buyer.name %>
-    <% end %>
+  <section class="buy-orders mb-4">
+    <h2 class="text-lg font-bold mb-1">Histórico de compras</h2>
+    <%= render partial: 'orders-list', locals: { orders: @buy_orders } %>
   </section>
-  
-  <section class="buy-orders">
-    <h2>Histórico de compras</h2>
-    <% @buy_orders.each do |buy| %>
-      <%= buy.item_name %>
-      <%= buy.seller.name %>
-    <% end %>
+
+  <section class="sale-orders">
+    <h2 class="text-lg font-bold mb-1">Histórico de vendas</h2>
+    <%= render partial: 'orders-list', locals: { orders: @sale_orders } %>
   </section>
 </section>
