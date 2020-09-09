@@ -1,0 +1,16 @@
+<nav class="text-gray-800">
+  <ul class="flex justify-center">
+    <li class="px-6 <%= current_page?(my_account_path) ? 'font-bold' : 'underline' %>">
+      <%= link_to_unless_current 'Inicial', my_account_path %>
+    </li>
+    <li class="px-6 <%= current_page?(history_my_account_path) ? 'font-bold' : 'underline' %>">
+      <%= link_to_unless_current 'Meus anúncios', sale_posts_my_account_path %>
+    </li>
+    <li class="px-6 <%= current_page?(history_my_account_path) ? 'font-bold' : 'underline' %>">
+      <%= link_to_unless_current 'Meu histórico', history_my_account_path %>
+    </li>
+    <li class="px-6 <%= current_page?(profile_user_path(current_user)) ? 'font-bold' : 'underline' %>">
+      <%= link_to_unless_current 'Meu perfil', profile_user_path(current_user) %>
+    </li>
+  </ul>
+</nav>

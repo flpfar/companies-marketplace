@@ -1,0 +1,4 @@
+<section class="my-posts-container">
+  <h1 class="text-xl font-bold mb-2">Meus anúncios</h1>
+  <%= render partial: 'shared/sale_post_list', locals: { posts: current_user.sale_posts } %>
+</section>

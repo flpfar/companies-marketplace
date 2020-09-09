@@ -11,7 +11,8 @@ feature 'Seller controls sale post' do
       login_as seller, scope: :user
       visit root_path
       click_on seller.name
-      within '.my-posts' do
+      click_on 'Meus anúncios'
+      within '.my-posts-container' do
         click_on post.title
       end
       within '.seller-controllers' do
@@ -37,7 +38,8 @@ feature 'Seller controls sale post' do
       login_as seller, scope: :user
       visit root_path
       click_on seller.name
-      within '.my-posts' do
+      click_on 'Meus anúncios'
+      within '.my-posts-container' do
         click_on post.title
       end
       within '.seller-controllers' do
@@ -65,7 +67,8 @@ feature 'Seller controls sale post' do
     login_as seller, scope: :user
     visit root_path
     click_on seller.name
-    within '.my-posts' do
+    click_on 'Meus anúncios'
+    within '.my-posts-container' do
       click_on post.title
     end
     within '.seller-controllers' do

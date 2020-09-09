@@ -23,6 +23,7 @@ Rails.application.routes.draw do
   end
   resource :my_account, controller: :my_account, only: [:show] do
     get :history, on: :member
+    get :sale_posts, on: :member
   end
 
   root to: 'home#index'

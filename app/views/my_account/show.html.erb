@@ -1,20 +1,15 @@
-<div class="profile-container">
-  <h1>My Account</h1>
-</div>
+<section class="profile-container text-gray-900">
+  <%= render 'account-nav' %>
 
-<nav>
-  <ul>
-    <li><%= link_to 'Meu histórico', history_my_account_path %></li>
-  </ul>
-</nav>
-
-<div class="notifications-unseen">
-  <% @user.notifications.unseen.each do |notification| %>
-    <%= link_to notification.body, notification_seen_path(notification), method: :post %>
-  <% end %>
-</div>
-
-<div class="my-posts">
-  <h2>Meus anúncios</h2>
-  <%= render partial: 'shared/sale_post_list', locals: { posts: @user.sale_posts } %>
-</div>
+  <div class="notifications-unseen">
+    <h2 class="text-lg font-bold mt-4 mb-2">Notificações não lidas (<%= @user.notifications.unseen.size %>)</h2>
+    <ul>
+      <% @user.notifications.unseen.each do |notification| %>
+        <li class="text-gray-800 text-sm">
+          <%= link_to notification.body, notification_seen_path(notification), method: :post, class: 'bg-red-200 hover:bg-red-300 mb-2 p-2 block' %>
+        </li>
+      <% end %>
+    </ul>
+    
+  </div>
+</section>
