@@ -40,6 +40,47 @@ feature 'User views sale post details' do
     end
   end
 
+  context 'and it is disabled' do
+    scenario 'and user is not the owner' do
+      coke_company = Company.create!(name: 'Coke', domain: 'coke.com.br')
+      disabled_user = User.create!(email: 'maria@coke.com.br', password: '123123')
+      eletro_category = Category.create!(name: 'Eletrodomésticos', company: coke_company)
+      user_bruno = User.create!(name: 'Bruno', birth_date: '18/10/90', role: 'Gerente',
+                                department: 'T.I', email: 'bruno@coke.com.br', password: '123123')
+      SalePost.create!(title: 'Fogão Dako', price: '300', user: user_bruno,
+                       description: 'Fogão ideal pra todos', category: eletro_category)
+      sale_post_refrigerator = SalePost.create!(title: 'Geladeira Brastemp', price: '800', user: user_bruno,
+                                                description: 'Geladeira semi nova, em ótimo estado',
+                                                category: eletro_category, status: :disabled)
+  
+      login_as disabled_user, scope: :user
+      visit sale_post_path(sale_post_refrigerator)
+  
+      expect(current_path).not_to eq(sale_post_path(sale_post_refrigerator))
+      expect(current_path).to eq(root_path)
+      expect(page).to have_content('Anúncio indisponível')
+    end
+
+    scenario 'and user is the owner' do
+      coke_company = Company.create!(name: 'Coke', domain: 'coke.com.br')
+      eletro_category = Category.create!(name: 'Eletrodomésticos', company: coke_company)
+      user_bruno = User.create!(name: 'Bruno', birth_date: '18/10/90', role: 'Gerente',
+                                department: 'T.I', email: 'bruno@coke.com.br', password: '123123')
+      SalePost.create!(title: 'Fogão Dako', price: '300', user: user_bruno,
+                       description: 'Fogão ideal pra todos', category: eletro_category)
+      sale_post_refrigerator = SalePost.create!(title: 'Geladeira Brastemp', price: '800', user: user_bruno,
+                                                description: 'Geladeira semi nova, em ótimo estado',
+                                                category: eletro_category, status: :disabled)
+
+      login_as user_bruno, scope: :user
+      visit sale_post_path(sale_post_refrigerator)
+
+      expect(current_path).to eq(sale_post_path(sale_post_refrigerator))
+      expect(page).to have_no_content('Anúncio indisponível')
+      expect(page).to have_link('Reativar anúncio')
+    end
+  end
+
   context 'and buy button' do
     scenario 'is available if user enabled and is not the owner' do
       coke_company = Company.create!(name: 'Coke', domain: 'coke.com.br')

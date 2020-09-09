@@ -1,8 +1,8 @@
 class SalePostsController < ApplicationController
   before_action :user_must_be_enabled, only: [:new, :create]
+  before_action :user_must_be_seller_if_post_is_disabled, only: [:show]
 
   def show
-    @sale_post = SalePost.find(params[:id])
     @order_in_progress = current_user.post_order_in_progress(@sale_post)
     @comments = @sale_post.comments.includes([:user])
     @comment = Comment.new
@@ -71,5 +71,12 @@ class SalePostsController < ApplicationController
     return if current_user.enabled?
 
     redirect_to root_path, alert: 'Para criar um anúncio seu perfil deve estar preenchido'
+  end
+
+  def user_must_be_seller_if_post_is_disabled
+    @sale_post = SalePost.find(params[:id])
+    if @sale_post.disabled? && @sale_post.user != current_user
+      redirect_to root_path, alert: 'Anúncio indisponível'
+    end
   end
 end
