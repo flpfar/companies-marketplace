@@ -62,4 +62,10 @@ Rails.application.configure do
 
   # To use faker lorem
   config.i18n.enforce_available_locales = false
+
+  config.after_initialize do
+    Bullet.enable = true
+    Bullet.alert = true
+    Bullet.console = true
+  end
 end

@@ -45,9 +45,15 @@ group :development do
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
 
+  # Generate Entity Relationship Diagram
   gem 'rails-erd'
+  # Generate fake data for seeds
   gem 'faker', require: false
+  # Outputs Formatter
   gem 'hirb'
+  # Optimize queries
+  gem 'bullet'
+  # Auto reload page when saving file
   gem 'guard-livereload'
 end
 
