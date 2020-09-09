@@ -1,6 +1,12 @@
 module.exports = {
   purge: [],
   theme: {
+    truncate: {
+      lines: {
+          2: '2',
+          3: '3',
+        }
+    },
     extend: {
       height: theme => ({
         "screen/2": "50vh",
@@ -9,5 +15,7 @@ module.exports = {
     },
   },
   variants: {},
-  plugins: [],
+  plugins: [
+    require('tailwindcss-truncate-multiline')(),
+  ],
 }

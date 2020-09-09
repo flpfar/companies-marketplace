@@ -1,15 +1,16 @@
-<!--<article data-item="<%= post.id %>" class="post-item rounded overflow-hidden border-solid border-2">-->
-<%= link_to sale_post_path(post.id), class: "post-item", data: { item: post.id } do %>
-  <article class="rounded overflow-hidden border-solid border-2 shadow-md hover:shadow-none">
+<%= link_to sale_post_path(post.id), class: "post-item", data: { item: post.id }, title: post.title do %>
+  <article class="rounded overflow-hidden shadow hover:bg-gray-100  transform hover:scale-110 transition-transform duration-500 ease-in-out">
     <%= cover_image(post, classes: "w-full h-48 object-cover") %>
 
-    <div class="px-6 py-2 relative">
-      <span class="absolute bg-gray-900 text-white font-bold inline-block top-0 right-0 -my-8 py-1 px-2"><%= number_to_currency post.price %></span>
+    <div class="px-4 py-2 relative h-40 flex flex-col">
+      <span class="absolute bg-gray-900 text-white border-t border-l font-bold inline-block top-0 right-0 -my-4 py-1 px-2"><%= number_to_currency post.price %></span>
       <% unless controller_name == 'categories' %>
         <span class="inline-block text-xs text-gray-700 mr-2 mb-1"><%= post.category.name %></span>
       <% end %>
 
-      <h2 class="font-bold text-gray-900 text-lg mb-2"><%= post.title %></h2>
+      <h2 class="font-bold text-md mb-1 truncate h-14"><%= post.title %></h2>
+      <p class="truncate-3-lines text-sm"><%= post.description %></p>
+      <p class="date text-xs text-gray-600 mt-auto text-right"><%= l post.created_at, format: :short %></p>
     </div>
   </article>
 <% end %>
