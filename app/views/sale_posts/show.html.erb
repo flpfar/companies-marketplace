@@ -27,7 +27,11 @@
   
       <% if current_user.enabled? && current_user != @sale_post.user %>
         <div class="">
-          <%= link_to "Comprar", sale_post_orders_path(@sale_post.id), method: :post, class: "bg-green-700 hover:bg-green-600 text-white p-2 rounded" %>
+          <% if @order_in_progress.present? %>
+            <%= link_to "Ver pedido", @order_in_progress, class: "bg-blue-700 hover:bg-blue-600 text-white p-2 rounded" %>
+          <% else %>
+            <%= link_to "Comprar", sale_post_orders_path(@sale_post.id), method: :post, data: { disable_with: "Aguarde" }, class: "bg-green-700 hover:bg-green-600 text-white p-2 rounded" %>
+          <% end %>
         </div>
       <% end %>
     </div>

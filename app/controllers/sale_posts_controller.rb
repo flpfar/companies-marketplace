@@ -3,6 +3,7 @@ class SalePostsController < ApplicationController
 
   def show
     @sale_post = SalePost.find(params[:id])
+    @order_in_progress = current_user.post_order_in_progress(@sale_post)
     @comments = @sale_post.comments.includes([:user])
     @comment = Comment.new
   end

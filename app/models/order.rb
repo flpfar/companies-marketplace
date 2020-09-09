@@ -2,8 +2,9 @@ class Order < ApplicationRecord
   belongs_to :sale_post
   belongs_to :buyer, class_name: 'User'
   belongs_to :seller, class_name: 'User'
-
   has_many :messages
+
+  validates_uniqueness_of :sale_post, scope: :buyer, conditions: -> { where(status: :in_progress) }
 
   after_create :send_notification
 

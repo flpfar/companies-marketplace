@@ -18,6 +18,10 @@ class User < ApplicationRecord
     name.present?
   end
 
+  def post_order_in_progress(post)
+    buy_orders.find_by(sale_post: post, status: :in_progress)
+  end
+
   private
 
   def assign_company_by_email
