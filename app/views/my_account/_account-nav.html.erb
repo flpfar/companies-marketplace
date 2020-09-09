@@ -1,9 +1,9 @@
-<nav class="text-gray-800">
+<nav class="text-gray-800 mb-2">
   <ul class="flex justify-center">
     <li class="px-6 <%= current_page?(my_account_path) ? 'font-bold' : 'underline' %>">
       <%= link_to_unless_current 'Inicial', my_account_path %>
     </li>
-    <li class="px-6 <%= current_page?(history_my_account_path) ? 'font-bold' : 'underline' %>">
+    <li class="px-6 <%= current_page?(sale_posts_my_account_path) ? 'font-bold' : 'underline' %>">
       <%= link_to_unless_current 'Meus anúncios', sale_posts_my_account_path %>
     </li>
     <li class="px-6 <%= current_page?(history_my_account_path) ? 'font-bold' : 'underline' %>">

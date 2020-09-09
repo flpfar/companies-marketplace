@@ -1,17 +1,21 @@
-<div class="user-info">
-  <h2>Informações do usuário</h2>
-  <dl>
-    <dt><%= User.human_attribute_name :name %></dt>
-    <dd><%= @user.name %></dd>
-    <dt><%= User.human_attribute_name :birth_date %></dt>
-    <dd><%= @user.birth_date %></dd>
-    <dt><%= User.human_attribute_name :department %></dt>
-    <dd><%= @user.department %></dd>
-    <dt><%= User.human_attribute_name :role %></dt>
-    <dd><%= @user.role %></dd>
-  </dl>
-</div>
+<%= render 'my_account/account-nav' if @user == current_user %>
 
-<div class="sale-posts">
-  <%= render partial: 'shared/sale_post_list', locals: { posts: @user.sale_posts.enabled } %>
-</div>
+<section class="profile-container">
+  <div class="user-info">
+    <h2>Informações do usuário</h2>
+    <dl>
+      <dt><%= User.human_attribute_name :name %></dt>
+      <dd><%= @user.name %></dd>
+      <dt><%= User.human_attribute_name :birth_date %></dt>
+      <dd><%= @user.birth_date %></dd>
+      <dt><%= User.human_attribute_name :department %></dt>
+      <dd><%= @user.department %></dd>
+      <dt><%= User.human_attribute_name :role %></dt>
+      <dd><%= @user.role %></dd>
+    </dl>
+  </div>
+  
+  <div class="sale-posts">
+    <%= render partial: 'shared/sale_post_list', locals: { posts: @user.sale_posts.enabled } %>
+  </div>
+</section>

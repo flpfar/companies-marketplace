@@ -1,8 +1,8 @@
-<section class="profile-container text-gray-900">
-  <%= render 'account-nav' %>
+<%= render 'account-nav' %>
 
+<section class="profile-container text-gray-900">
   <div class="notifications-unseen">
-    <h2 class="text-lg font-bold mt-4 mb-2">Notificações não lidas (<%= @user.notifications.unseen.size %>)</h2>
+    <h2 class="text-lg font-bold mb-2">Notificações não lidas (<%= @user.notifications.unseen.size %>)</h2>
     <ul>
       <% @user.notifications.unseen.each do |notification| %>
         <li class="text-gray-800 text-sm">
@@ -10,6 +10,5 @@
         </li>
       <% end %>
     </ul>
-    
   </div>
 </section>
