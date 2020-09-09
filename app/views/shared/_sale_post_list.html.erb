@@ -1,4 +1,4 @@
-<ul class="grid gap-8 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+<ul class="grid gap-4 lg:gap-8 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
   <% posts.each do |post| %>
     <li><%= render partial: 'shared/sale_post_item', locals: { post: post } %></li>
   <% end %>
