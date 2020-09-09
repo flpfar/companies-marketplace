@@ -4,9 +4,7 @@
 
     <div class="px-4 py-2 relative h-40 flex flex-col">
       <span class="absolute bg-gray-900 text-white border-t border-l font-bold inline-block top-0 right-0 -my-4 py-1 px-2"><%= number_to_currency post.price %></span>
-      <% unless controller_name == 'categories' %>
-        <span class="inline-block text-xs text-gray-700 mr-2 mb-1"><%= post.category.name %></span>
-      <% end %>
+      <span class="inline-block text-xs text-gray-700 mr-2 mb-1"><%= post.category.name %></span>
 
       <h2 class="font-bold text-md mb-1 truncate h-14"><%= post.title %></h2>
       <p class="truncate-3-lines text-sm"><%= post.description %></p>

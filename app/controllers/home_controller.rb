@@ -4,7 +4,6 @@ class HomeController < ApplicationController
   def index
     return redirect_to new_user_session_path unless user_signed_in?
 
-    # @posts = current_user.company.sale_posts.enabled
-    @posts = current_user.company.sale_posts.enabled.with_attached_cover.includes([:category])
+    @posts = current_user.company.sale_posts.enabled.with_attached_cover.includes([:category]).order(created_at: :desc)
   end
 end
