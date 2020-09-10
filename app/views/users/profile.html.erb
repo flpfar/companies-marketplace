@@ -10,7 +10,15 @@
   </h1>
   
   <%= render partial: 'user-info', locals: {user: @user} %>
-  <div class="sale-posts">
+
+  <div class="sale-posts mt-8 mb-4">
+    <h2 class="text-lg font-bold mb-4">
+      <% if @user == current_user %>
+        Meus anúncios ativos
+      <% else %>
+        Anúncios de <%= @user.name %>
+      <% end %>
+    </h2>
     <%= render partial: 'shared/sale_post_list', locals: { posts: @posts } %>
   </div>
 </section>
