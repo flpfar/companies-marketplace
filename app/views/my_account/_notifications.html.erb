@@ -1,0 +1,16 @@
+<div class="notifications-unseen mb-4">
+  <h2 class="text-lg font-bold mb-2">Notificações não lidas (<%= @user.notifications.unseen.size %>)</h2>
+  <% if notifications.empty? %>
+    <p class="text-sm">Não há notificações não lidas a serem exibidas</p>
+  <% end %>
+  <ul>
+    <% notifications.each do |notification| %>
+      <li class="text-gray-800 text-sm">
+        <%= link_to notification_seen_path(notification), method: :post, class: 'bg-gray-200 hover:bg-gray-300 mb-2 p-2 flex flex-wrap justify-between' do %>
+          <span><%= notification.body %></span>
+          <span class="text-xs"><%= l notification.created_at, format: :short %></span>
+        <% end %>
+      </li>
+    <% end %>
+  </ul>
+</div>

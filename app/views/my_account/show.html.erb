@@ -1,19 +1,7 @@
 <%= render 'account-nav' %>
 
 <section class="profile-container text-gray-900">
-  <div class="notifications-unseen mb-4">
-    <h2 class="text-lg font-bold mb-2">Notificações não lidas (<%= @user.notifications.unseen.size %>)</h2>
-    <% if @user.notifications.unseen.empty? %>
-      <p class="text-sm">Não há notificações não lidas a serem exibidas</p>
-    <% end %>
-    <ul>
-      <% @user.notifications.unseen.each do |notification| %>
-        <li class="text-gray-800 text-sm">
-          <%= link_to notification.body, notification_seen_path(notification), method: :post, class: 'bg-red-200 hover:bg-red-300 mb-2 p-2 block' %>
-        </li>
-      <% end %>
-    </ul>
-  </div>
+  <%= render partial: 'notifications', locals: { notifications: @notifications_unseen } %>
 
   <div class="my-orders-in-progress">
     <h2 class="text-lg font-bold mb-2">Negociações em andamento</h2>
