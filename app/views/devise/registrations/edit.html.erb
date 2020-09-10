@@ -1,5 +1,7 @@
+<%= render 'my_account/account-nav' %>
+
 <section class="edit-user-container">
-  <h1 class="text-2xl font-bold mb-2">Editar perfil</h1>
+  <h1 class="text-xl font-bold mb-2">Editar perfil</h1>
 
   <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put, class: "flex flex-col" }) do |f| %>
     <%= render "devise/shared/error_messages", resource: resource %>
@@ -17,8 +19,4 @@
   
       <%= f.submit "Enviar", class: "my-8 p-2 bg-gray-900 text-white hover:bg-gray-800 cursor-pointer" %>
   <% end %>
-    
-  <div class="text-right">
-    <%# button_to "Excluir minha conta", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete, class: "text-xs text-red-700 px-2 underline cursor-pointer" %></p>
-  </div>
 </section>

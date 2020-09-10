@@ -1,6 +1,8 @@
 <div class="user-info">
-  <h2 class="text-center text-lg font-bold mb-2">Informações do usuário</h2>
-  <%= link_to  "Editar perfil", edit_user_registration_path if user == current_user %>
+  <div class="flex justify-center items-center mb-2">
+    <h2 class="text-lg font-bold">Informações do usuário</h2>
+    <%= link_to "Editar perfil", edit_user_registration_path, class: "ml-4 text-sm underline hover:no-underline" if user == current_user %>
+  </div>
   <div class="flex justify-center">
     <dl class="sm:flex-1 sm:w-full max-w-screen-sm">
       <div class="bg-gray-100 px-4 py-5 grid md:grid-cols-2">
