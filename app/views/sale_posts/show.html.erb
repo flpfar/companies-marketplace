@@ -1,4 +1,4 @@
-<section class="post-container text-gray-900 grid grid-cols-2 mb-12">
+<section class="post-container text-gray-900 grid sm:grid-cols-1 lg:grid-cols-2 mb-12">
   <div class="post-details h-screen/2 flex flex-col">
     <h1 class="text-2xl font-bold mb-2">
       <%= @sale_post.title %>
@@ -43,25 +43,27 @@
 </section>
 
 <div class="comments-container">
-    <h2 class="text-xl font-bold mb-2">Comentários</h2>
+  <h2 class="text-xl font-bold mb-2">Comentários</h2>
 
-    <%= 'Não há comentários' if @comments.empty? %>
+  <%= 'Não há comentários' if @comments.empty? %>
 
-    <% @comments.each do |comment| %>
-      <div class="comment-item text-sm mb-4">
-        <header class="comment-header">
-          <%= link_to comment.user.name, profile_user_path(comment.user), class: "font-bold" %>
-          <span class="text-xs text-gray-800"><%= comment.user.department %></span>
-        </header>
-        <p class="comment-body">
-          <%= comment.body %>
-          <span class="text-xs text-gray-600 ml-1"><%= l comment.created_at, format: :short %></span>
-        </p>
-      </div>
-    <% end %>
+  <% @comments.each do |comment| %>
+    <div class="comment-item text-sm mb-4">
+      <header class="comment-header">
+        <%= link_to comment.user.name, profile_user_path(comment.user), class: "font-bold" %>
+        <span class="text-xs text-gray-800"><%= comment.user.department %></span>
+      </header>
+      <p class="comment-body">
+        <%= comment.body %>
+        <span class="text-xs text-gray-600 ml-1"><%= l comment.created_at, format: :short %></span>
+      </p>
+    </div>
+  <% end %>
 
-    <%= form_with model: [@sale_post, @comment], locals: true do |f| %>
-      <%= f.text_area :body, placeholder: 'Comentário...' %>
-      <%= f.submit 'Enviar' %>
-    <% end %>
-  </div>
+  <%= form_with model: [@sale_post, @comment], locals: true, class: "w-full"  do |f| %>
+    <%= f.text_area :body, placeholder: 'Escreva um comentário...', class: "p-2 border border-gray-400 rounded text-sm block w-full" %>
+    <div class="text-right">
+      <%= f.submit 'Enviar', class: "bg-gray-900 text-white text-sm px-2 cursor-pointer hover:bg-gray-800" %>
+    </div>
+  <% end %>
+</div>
