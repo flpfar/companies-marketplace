@@ -1,0 +1,10 @@
+<div class="message-item text-sm mb-4">
+  <header class="message-header">
+    <%= link_to message.author.name, profile_user_path(message.author), class: "font-bold" %>
+    <span class="text-xs text-gray-800"><%= message.author.department %></span>
+  </header>
+  <p class="message-body">
+    <%= message.body %>
+    <span class="text-xs text-gray-600 ml-1"><%= l message.created_at, format: :short %></span>
+  </p>
+</div>

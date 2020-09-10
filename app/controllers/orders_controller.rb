@@ -17,6 +17,7 @@ class OrdersController < ApplicationController
 
   def show
     @message = Message.new
+    @messages = @order.messages.includes([:author])
   end
 
   def complete

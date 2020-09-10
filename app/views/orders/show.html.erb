@@ -1,35 +1,78 @@
-<%= Order.human_attribute_name("status.#{@order.status}") %>
-<%= number_to_currency @order.final_price %>
-<%= @order.item_name %>
-<%= @order.item_description %>
-<%= number_to_currency @order.posted_price %>
+<section class="order-container">
+  <div class="order text-gray-900 mb-12">
+    <div class="order-details flex flex-col">
+      <h1 class="text-2xl font-bold mb-2">
+        <span class="font-normal">Pedido:</span> <%= Order.human_attribute_name("status.#{@order.status}") %>
+      </h1>
+      <p class="font-bold text-lg mb-1">
+        <%= @order.item_name %>
+      </p>
+    
+      <p class="text-sm">
+        <%= @order.item_description %>
+      </p>
 
-<% if @order.in_progress? %>
-  <div class="messages-container">
-    <%= form_with model: [@order, @message], local: true do |f| %>
-      <%= f.text_field :body, placeholder: 'Escreva uma mensagem...' %>
-      <%= f.submit 'Enviar' %>
-    <% end %>
+      <p class="mb-8 text-sm">
+        <%= link_to 'Ver anúncio', @order.sale_post, class: 'underline hover:no-underline' if @order.in_progress? %>
+      </p>
 
-    <% @order.messages.each do |message| %>
-      <%= message.author.name %>
-      <%= message.body %>
-    <% end %>
+      <div class="text-sm">
+        <p>
+          <span class="text-xs">Vendedor: </span>
+          <%= link_to @order.seller.name, profile_user_path(@order.seller), class: 'underline hover:no-underline' %>
+        </p>
+        <p>
+          <span class="text-xs">Comprador: </span>
+          <%= link_to @order.buyer.name, profile_user_path(@order.buyer), class: 'underline hover:no-underline' %>
+          <%=  %>
+        </p>
+      </div>
+
+      <div class="mt-8 mb-4">
+        <div class="text-lg">
+          <p>
+            <span class="text-sm">Valor anunciado: </span>
+            <%= number_to_currency @order.posted_price %>
+          </p>
+          
+          <% if @order.completed? %>
+            <p>
+              <span class="text-sm">Valor final: </span>
+              <span class="font-medium"><%= number_to_currency @order.final_price %></span>
+            </p>
+          <% end %>
+        </div>
+        <% if current_user == @order.seller && @order.in_progress? %>
+          <div class="seller-controllers mt-4">
+            <button class="complete-btn bg-green-600 hover:bg-green-500 text-white rounded mr-2 py-1 px-2">Concluir venda</button>
+            <%= link_to 'Cancelar venda', cancel_order_path, method: :post, class: "bg-red-600 hover:bg-red-500 rounded text-white inline-block py-1 px-2" %>
+          </div>
+          <%= form_with url: complete_order_path, local: true, class: "complete-form hidden mt-4" do |f| %>
+            <%= f.number_field :final_price, placeholder: "Valor final", class: "p-2 border border-gray-400 rounded w-48 text-sm" %>
+            <%= f.submit 'Finalizar', class: "p-2 border bg-gray-900 text-white rounded text-sm" %>
+          <% end %>
+          <%= javascript_pack_tag 'seller_actions_on_order' %>
+        <% end %>
+      </div>
+    </div>
   </div>
-<% end %>
 
 
-<% if current_user == @order.seller && @order.in_progress? %>
-  <div class="seller-controllers">
-    <button class="complete-btn">Concluir venda</button>
-    <%= form_with url: complete_order_path, local: true, class: "complete-form hidden" do |f| %>
-      <%= f.label :final_price, 'Valor final' %>
-      <%= f.number_field :final_price %>
-      <%= f.submit 'Finalizar' %>
-    <% end %>
-    <%= link_to 'Cancelar venda', cancel_order_path, method: :post %>
-  </div>
-<% end %>
-
-<%= javascript_pack_tag 'seller_actions' %>
-
+  <% if @order.in_progress? %>
+    <div class="messages-container">
+      <h2 class="text-xl font-bold mb-2">Mensagens</h2>
+      <p class="text-sm mb-2">
+        <%= 'Não há mensagens' if @messages.empty? %>
+      </p>
+      <% @messages.each do |message| %>
+        <%= render partial: 'message', locals: { message: message } %>
+      <% end %>
+      <%= form_with model: [@order, @message], local: true, class: "sm:w-full lg:w-2/3" do |f| %>
+        <%= f.text_area :body, placeholder: 'Escreva uma mensagem...', class: "p-2 border border-gray-400 rounded text-sm block w-full" %>
+        <div class="text-right">
+          <%= f.submit 'Enviar', class: "bg-gray-900 text-white text-sm px-2 cursor-pointer hover:bg-gray-800" %>
+        </div>
+      <% end %>
+    </div>
+  <% end %>
+</section>
