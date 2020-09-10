@@ -1,0 +1,28 @@
+<div class="user-info">
+  <h2 class="text-center text-lg font-bold mb-2">Informações do usuário</h2>
+  <%= link_to  "Editar perfil", edit_user_registration_path if user == current_user %>
+  <div class="flex justify-center">
+    <dl class="sm:flex-1 sm:w-full max-w-screen-sm">
+      <div class="bg-gray-100 px-4 py-5 grid md:grid-cols-2">
+        <dt class="text-sm leading-5 font-medium text-gray-500"><%= User.human_attribute_name :name %></dt>
+        <dd><%= user.name %></dd>
+      </div>
+      <div class="bg-white px-4 py-5 grid md:grid-cols-2">
+        <dt class="text-sm leading-5 font-medium text-gray-500"><%= User.human_attribute_name :email %></dt>
+        <dd><%= user.email %></dd>
+      </div>
+      <div class="bg-gray-100 px-4 py-5 grid md:grid-cols-2">
+        <dt class="text-sm leading-5 font-medium text-gray-500"><%= User.human_attribute_name :birth_date %></dt>
+        <dd><%= user.birth_date %></dd>
+      </div>
+      <div class="bg-white px-4 py-5 grid md:grid-cols-2">
+        <dt class="text-sm leading-5 font-medium text-gray-500"><%= User.human_attribute_name :department %></dt>
+        <dd><%= user.department %></dd>
+      </div>
+      <div class="bg-gray-100 px-4 py-5 grid md:grid-cols-2">
+        <dt class="text-sm leading-5 font-medium text-gray-500"><%= User.human_attribute_name :role %></dt>
+        <dd><%= user.role %></dd>
+      </div>
+    </dl>
+  </div>
+</div>

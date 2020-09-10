@@ -1,6 +1,7 @@
 <%= render 'account-nav' %>
 
 <section class="orders-container">
+  <h1 class="text-xl font-bold mb-2">Meus histórico</h1>
   <section class="buy-orders mb-4">
     <h2 class="text-lg font-bold mb-1">Histórico de compras</h2>
     <%= render partial: 'orders-list', locals: { orders: @buy_orders } %>
