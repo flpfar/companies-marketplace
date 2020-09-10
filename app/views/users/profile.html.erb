@@ -13,6 +13,7 @@
       <dt><%= User.human_attribute_name :role %></dt>
       <dd><%= @user.role %></dd>
     </dl>
+    <%= link_to  "Editar perfil", edit_user_registration_path if @user == current_user %>
   </div>
   
   <div class="sale-posts">
