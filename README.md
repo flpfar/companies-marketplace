@@ -6,12 +6,31 @@ This project provides a marketplace for companies. All users registered with a c
 
 ## Features
 
-- In progress
+- Create posts to sell products / services
+- Buy items from other users
+- Messages between buyer/seller within an item order
+- Notifications on orders status changes
+- Users linked to their companies according to email domain
+- Control post visibility
+- Only users with profile info can buy and sell
+- History of bought/sold items
+- Responsive
 
 ## Built With
 
 - Ruby 2.7.0
 - Rails 6
+- Devise (authentication)
+- Rspec / Capybara (testing)
+- TailwindCSS (styling)
+- Rubocop (linter)
+
+### Development Gems
+
+  - bullet (improve db queries)
+  - hirb (better visualization of query results in rails console)
+  - rails-erd (generate entity relationship diagram)
+  - guard-livereload (auto reloads page when saving file)
 
 ## Live Demo
 
@@ -26,21 +45,43 @@ This project provides a marketplace for companies. All users registered with a c
 
 ### Setup
 
-Inside the terminal:
-- Clone this repository: ` git clone https://github.com/flpfar/companies-marketplace.git `
-- Navigate to the project folder: ` cd companies-marketplace `
-- Run the following command:
+In terminal:
+- Clone this repository: `$ git clone https://github.com/flpfar/companies-marketplace.git `
+- Navigate to the project folder: `$ cd companies-marketplace `
+- Run the following commands:
 ```
 $ bundle install
+$ rails db:create
+$ rails db:migrate
 ```
+
+**Sample data**
+
+This project contains a seeds file to provide sample data for a preview of the application. The seeds file creates a company with domain 'coshop.com', some categories and posts. After running the seeds, it is possible to 'Sign up' users with emails like 'user@coshop.com'.
+
+In order to use the seeds file, run in terminal: `$ rails db:seed `
 
 ### Usage
 
-Open a web browser and type ` http://localhost:3000/ ` on the address bar.
+Create a company and a category for that company (each company has its own categories) through terminal: 
+```
+$ rails console
+> Company.create(name: 'Company Name', domain: 'companydomain.com')
+> Company.first.categories.create(name: 'Some category')
+```
+
+- Run `rails server` in terminal.
+- Open a web browser and type ` http://localhost:3000/ ` on the address bar.
+
+Visit the 'Sign Up' page, create a user using a company's domain email and start playing around.
 
 ### Run tests
 
-This project uses RSpec for testing. In order to run the tests, type `rspec` in the terminal, inside this project folder.
+This project uses RSpec and Capybara for testing. In order to run the tests, type `rspec` in the terminal, inside this project folder. For more information about the running tests, use `rspec -f d`
+
+### Development Notes
+
+- In progress.
 
 ## Potential Features
 
