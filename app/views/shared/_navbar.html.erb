@@ -1,14 +1,10 @@
-<nav class="bg-gray-900 text-white flex items-center justify-between px-8 py-2 min-w-0">
-  <div class="flex items-center">
-    <%= link_to root_path do %>
-      <%= image_tag "logo-white.png", class: "w-32" %>
+<nav class="bg-gray-900 text-white flex items-center justify-between px-2 md:px-4 lg:px-8 py-2 min-w-0">
+  <div class="flex-1 flex items-center">
+    <%= link_to root_path, class: "w-24 md:w-32" do %>
+      <%= image_tag "logo-white.png" %>
     <% end %>
-    <ul class="flex mx-8 font-bold">
-      <li class="mr-4"><%= link_to "Início", root_path, class: "hover:underline" %></li>
-      <li><%= link_to "Categorias", categories_path, class: "hover:underline"  %></li>
-    </ul>
-    <%= form_with url: search_sale_posts_path, method: :get, local: true, class: "ml-4 flex items-center justify-center" do |f| %>
-      <%= f.text_field :q, placeholder: 'Buscar', class: "px-2 w-64 text-gray-900 text-sm h-8" %>
+    <%= form_with url: search_sale_posts_path, method: :get, local: true, class: "ml-2 md:ml-4 flex-1 flex items-center justify-center" do |f| %>
+      <%= f.text_field :q, placeholder: 'Buscar', class: "w-0 px-2 flex-1 text-gray-900 text-sm h-8 " %>
       <%= button_tag type: 'submit', class: "search-btn px-2 bg-gray-200 text-gray-900 text-sm h-8" do %>
         <svg class="text-gray-600 h-4 w-4 fill-current" xmlns="http://www.w3.org/2000/svg"
             xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px"
@@ -20,9 +16,15 @@
       <% end %>
     <% end %>
   </div>
+
+  <div class="w-8 h-8 ml-3 flex-shrink-0 block md:hidden">
+    <button class="nav-btn flex items-center justify-center w-full h-full border text-gray-400 border-gray-700 rounded hover:text-white hover:border-white">
+      <svg class="fill-current h-4 w-4" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><title>Menu</title><path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z"/></svg>
+    </button>
+  </div>
   
-  <div class="flex items-center">
-    <%= link_to "Criar um anúncio", new_sale_post_path, class: "mx-10 border border-gray-200 text-gray-200 hover:bg-gray-200 hover:text-gray-900 rounded px-3 py-1" if current_user.enabled? %>
+  <div class="user-menu items-center justify-between ml-8 md:text-sm hidden md:flex">
+    <%= link_to "Criar um anúncio", new_sale_post_path, class: "mr-8 border border-gray-200 text-gray-200 hover:bg-gray-200 hover:text-gray-900 rounded px-3 py-1" if current_user.enabled? %>
     <div>
       <%= link_to my_account_path, class: "hover:underline" do %>
         <%= show_user_title %>
@@ -36,6 +38,26 @@
       <%= link_to "Sair", destroy_user_session_path, class: "hover:underline", method: :delete %>
     </div>
   </div>
+
+  <ul class="nav-menu absolute top-0 right-0 bg-gray-900 text-sm p-4 mt-12 hidden md:hidden z-10">
+    <li class="border-b pb-2">
+      <%= link_to "Criar um anúncio", new_sale_post_path, class: "hover:underline" if current_user.enabled? %>
+    </li>
+    <li class="pt-2">
+      <%= link_to my_account_path, class: "hover:underline" do %>
+        <%= show_user_title %>
+        <% if current_user.notifications.unseen.present? %>
+          <span class="notifications rounded-full bg-red-600 text-white inline-block text-sm text-center w-5 h-5">
+            <%= current_user.notifications.unseen.size %>
+          </span>
+        <% end %>
+      <% end %>
+    </li>
+    <li class="">
+      <%= link_to "Sair", destroy_user_session_path, class: "hover:underline", method: :delete %>
+    </li>
+  </ul>
+
 </nav>
 
 <% unless current_user.enabled? %>
@@ -46,3 +68,5 @@
     </p>
   </div>
 <% end %>
+
+<%= javascript_pack_tag 'navbar_toggle' %>

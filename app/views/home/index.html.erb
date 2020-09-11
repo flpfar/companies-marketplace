@@ -1,5 +1,18 @@
+<div class="categories-container mb-4">
+  <h1 class="text-xl font-bold text-gray-900 mb-2">Categorias</h1>
+  <% if @categories.empty? %>
+    <p class="text-sm">Não há categorias cadastradas. Contate o administrador.</p>
+  <% end %>
+  <ul class="categories-list flex flex-wrap text-md">
+    <% @categories.each do |category| %>
+      <%= link_to category, class: "border py-1 px-3 mr-2 mb-2 transform hover:bg-gray-900 hover:text-white hover:scale-105 transition-transform duration-200 ease-in-out" do %>
+        <li><%= category.name %></li>
+      <% end %>
+    <% end %>
+  </ul>
+</div>
 <div class="posts-container">
-  <h1 class="text-xl font-bold text-gray-900 mb-4">Anúncios</h1>
+  <h2 class="text-xl font-bold text-gray-900 mb-4">Anúncios</h2>
   <% if @posts.empty? %>
     <p>Não há anúncios cadastrados</p>
   <% end %>

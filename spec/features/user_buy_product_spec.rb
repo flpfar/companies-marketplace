@@ -38,13 +38,15 @@ feature 'User buys a product' do
     login_as user_diego, scope: :user
     visit sale_post_path(post.id)
     click_on 'Comprar'
-    click_on 'Sair'
+    within '.user-menu' do
+      click_on 'Sair'
+    end
     login_as user_bruno, scope: :user
     visit root_path
 
     expect(user_bruno.reload.notifications.size).to eq(1)
     expect(page).to have_css('.notifications')
-    within '.notifications' do
+    within '.user-menu .notifications' do
       expect(page).to have_content('1')
     end
   end

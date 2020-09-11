@@ -8,7 +8,9 @@ feature 'User edits profile' do
 
     login_as lorem, scope: :user
     visit root_path
-    click_on lorem.name
+    within '.user-menu' do
+      click_on lorem.name
+    end
     click_on 'Meu perfil'
     click_on 'Editar perfil'
     fill_in 'Nome', with: 'Lorem Ipsum'

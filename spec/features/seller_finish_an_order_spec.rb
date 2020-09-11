@@ -12,10 +12,14 @@ feature 'Seller finishes an order' do
     login_as buyer, scope: :user
     visit sale_post_path(post)
     click_on 'Comprar'
-    click_on 'Sair'
+    within '.user-menu' do
+      click_on 'Sair'
+    end
     login_as seller, scope: :user
     visit root_path
-    click_on seller.name
+    within '.user-menu' do
+      click_on seller.name
+    end
     click_on seller.notifications.first.body
     click_on 'Concluir venda'
     fill_in 'Valor final', with: 1020
@@ -41,10 +45,14 @@ feature 'Seller finishes an order' do
     login_as buyer, scope: :user
     visit sale_post_path(post)
     click_on 'Comprar'
-    click_on 'Sair'
+    within '.user-menu' do
+      click_on 'Sair'
+    end
     login_as seller, scope: :user
     visit root_path
-    click_on seller.name
+    within '.user-menu' do
+      click_on seller.name
+    end
     click_on seller.notifications.first.body
     click_on 'Concluir venda'
     click_on 'Finalizar'
@@ -70,7 +78,9 @@ feature 'Seller finishes an order' do
 
     login_as seller, scope: :user
     visit root_path
-    click_on seller.name
+    within '.user-menu' do
+      click_on seller.name
+    end
     click_on seller.notifications.first.body
     click_on 'Cancelar venda'
 

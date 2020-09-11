@@ -30,7 +30,9 @@ feature 'User creates sale post' do
 
     login_as user_diego, scope: :user
     visit root_path
-    click_on 'Criar um anúncio'
+    within '.user-menu' do
+      click_on 'Criar um anúncio'
+    end
     fill_in 'Título', with: 'Fogão'
     select 'Eletrodomésticos', from: 'Categoria'
     fill_in 'Descrição', with: 'Fogão ideal para todos'
@@ -75,7 +77,9 @@ feature 'User creates sale post' do
 
     login_as user_diego, scope: :user
     visit root_path
-    click_on 'Criar um anúncio'
+    within '.user-menu' do
+      click_on 'Criar um anúncio'
+    end
     click_on 'Criar anúncio'
 
     expect(page).to have_content('Categoria é obrigatório(a)')

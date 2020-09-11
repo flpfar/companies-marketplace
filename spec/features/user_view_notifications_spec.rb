@@ -17,10 +17,12 @@ feature 'User views notifications' do
 
     login_as seller, scope: :user
     visit root_path
-    click_on seller.name
+    within '.user-menu' do
+      click_on seller.name
+    end
 
-    expect(page).to have_css('.notifications')
-    within '.notifications' do
+    expect(page).to have_css('.user-menu .notifications')
+    within '.user-menu .notifications' do
       expect(page).to have_content(2)
     end
     expect(seller.notifications.unseen.size).to eq(2)
@@ -40,7 +42,9 @@ feature 'User views notifications' do
 
     login_as seller, scope: :user
     visit root_path
-    click_on seller.name
+    within '.user-menu' do
+      click_on seller.name
+    end
     click_on seller.notifications.first.body
 
     expect(page).to have_no_css('.notifications')

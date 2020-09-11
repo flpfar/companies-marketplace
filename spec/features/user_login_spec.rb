@@ -25,7 +25,9 @@ feature 'User logs in' do
     fill_in 'Email', with: 'user@coke.com'
     fill_in 'Senha', with: '123123'
     click_on 'Entrar'
-    click_on 'Sair'
+    within '.user-menu' do
+      click_on 'Sair'
+    end
 
     expect(current_path).to eq(new_user_session_path)
   end

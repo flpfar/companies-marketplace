@@ -10,7 +10,7 @@ Rails.application.routes.draw do
     post 'enable', on: :member
     get 'search', on: :collection
   end
-  resources :categories, only: [:index, :show]
+  resources :categories, only: [:show]
   resources :orders, only: [:show] do
     resources :messages, only: [:create]
     member do

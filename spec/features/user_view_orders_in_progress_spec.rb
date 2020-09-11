@@ -21,7 +21,9 @@ feature 'User views orders in progress' do
 
     login_as user, scope: :user
     visit root_path
-    click_on user.name
+    within '.user-menu' do
+      click_on user.name
+    end
 
     within '.my-orders-in-progress' do
       expect(page).to have_content('Xbox One')

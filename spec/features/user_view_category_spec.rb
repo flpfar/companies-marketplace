@@ -13,9 +13,6 @@ feature 'User views category' do
 
     login_as user, scope: :user
     visit root_path
-    within 'nav' do
-      click_on 'Categorias'
-    end
     within '.categories-list' do
       click_on 'Games'
     end
@@ -39,9 +36,6 @@ feature 'User views category' do
 
     login_as user, scope: :user
     visit root_path
-    within 'nav' do
-      click_on 'Categorias'
-    end
     within '.categories-list' do
       click_on 'Games'
     end

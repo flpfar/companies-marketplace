@@ -22,7 +22,9 @@ feature 'User views history' do
 
     login_as user, scope: :user
     visit root_path
-    click_on user.name
+    within '.user-menu' do
+      click_on user.name
+    end
     click_on 'Meu histórico'
 
     within '.sale-orders' do
