@@ -19,10 +19,14 @@
     <div class="buy-price mt-auto mb-4">
       <div class="text-3xl mb-4"><%= number_to_currency @sale_post.price %></div>
   
-      <% if current_user == @sale_post.user %>
+      <% if current_user == @sale_post.user && !@sale_post.sold? %>
         <div class="seller-controllers">
           <%= enable_disable_button(@sale_post) %>
         </div>
+      <% end %>
+
+      <% if @sale_post.sold? %>
+        <p class="text-sm">Anúncio finalizado</p>
       <% end %>
   
       <% if current_user.enabled? && current_user != @sale_post.user %>

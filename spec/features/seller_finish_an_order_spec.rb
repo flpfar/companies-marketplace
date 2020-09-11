@@ -29,7 +29,7 @@ feature 'Seller finishes an order' do
     expect(current_path).to eq('/orders/1')
     expect(page).to have_content('Finalizado')
     expect(page).to have_content('R$ 1.020,00')
-    expect(post.reload).to be_disabled
+    expect(post.reload).to be_sold
     expect(post.orders.first).to be_completed
     expect(buyer.reload.notifications.unseen.first.body).to include('O vendedor aceitou seu pedido de compra')
   end
@@ -61,7 +61,7 @@ feature 'Seller finishes an order' do
     expect(current_path).to eq('/orders/1')
     expect(page).to have_content('Finalizado')
     expect(page).to have_content('R$ 1.000,00', count: 2)
-    expect(post.reload).to be_disabled
+    expect(post.reload).to be_sold
     expect(post.orders.first).to be_completed
     expect(buyer.reload.notifications.unseen.first.body).to include('O vendedor aceitou seu pedido de compra')
   end

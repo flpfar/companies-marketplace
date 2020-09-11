@@ -24,7 +24,7 @@ class OrdersController < ApplicationController
     final_price = params[:final_price]
     order_final_price = final_price.present? ? final_price : @order.posted_price
     @order.update(status: :completed, final_price: order_final_price)
-    @order.sale_post.disabled!
+    @order.sale_post.sold!
     @order.buyer.notifications.create(
       body: "O vendedor aceitou seu pedido de compra para '#{@order.item_name}'", path: order_path(@order)
     )

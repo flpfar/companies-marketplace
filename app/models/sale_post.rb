@@ -6,7 +6,7 @@ class SalePost < ApplicationRecord
   has_many :comments
   has_one_attached :cover
 
-  enum status: { enabled: 0, disabled: 10 }
+  enum status: { enabled: 0, disabled: 10, sold: 20 }
 
   validates :title, :description, :price, presence: true
 end
