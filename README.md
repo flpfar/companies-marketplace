@@ -2,7 +2,9 @@
 
 > Buy and sell items from your co-workers.
 
-This project provides a marketplace for companies. All users registered with a company domain email can sell and buy stuff from other users of the same organization.
+![coshop-cover](https://user-images.githubusercontent.com/15898299/92945344-87f56980-f42b-11ea-98f5-32767a20ddfb.jpg)
+
+This project provides a marketplace for companies where all users registered with a company domain email can sell and buy things from other users of the same organization.
 
 ## Features
 
@@ -59,11 +61,11 @@ $ rails db:migrate
 
 This project contains a seeds file to provide sample data for a preview of the application. The seeds file creates a company with domain 'coshop.com', some categories and posts. After running the seeds, it is possible to 'Sign up' users with emails like 'user@coshop.com'.
 
-In order to use the seeds file, run in terminal: `$ rails db:seed `
+- In order to use the seeds file, run in terminal: `$ rails db:seed `
 
 ### Usage
 
-Create a company and a category for that company (each company has its own categories) through terminal: 
+- Create a company and a category for that company (each company has its own categories) through terminal: 
 ```
 $ rails console
 > Company.create(name: 'Company Name', domain: 'companydomain.com')
@@ -72,20 +74,23 @@ $ rails console
 
 - Run `rails server` in terminal.
 - Open a web browser and type ` http://localhost:3000/ ` on the address bar.
-
-Visit the 'Sign Up' page, create a user using a company's domain email and start playing around.
+- Visit the 'Sign Up' page, create a user using a company's domain email and start playing around.
 
 ### Run tests
 
 This project uses RSpec and Capybara for testing. In order to run the tests, type `rspec` in the terminal, inside this project folder. For more information about the running tests, use `rspec -f d`
 
-### Development Notes
+## Development Notes
 
-- In progress.
+- I've been using a trello board to manage most of the tasks for this project. This board is available [here](https://trello.com/b/qaJ3KPx4/treinadev-marketplace).
+
+- The Entity Relationship Diagram of this project is available [here](erd.pdf).
 
 ## Potential Features
 
-- In progress.
+- Admin dashboard
+- Wishlist
+- Report posts
 
 ## 👤 Author
 
