@@ -86,6 +86,8 @@ This project uses RSpec and Capybara for testing. In order to run the tests, typ
 
 - The Entity Relationship Diagram of this project is available [here](erd.pdf).
 
+- This whole project has been developed following TDD (Test Driven Development) process.
+
 ## Potential Features
 
 - Admin dashboard
