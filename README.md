@@ -2,7 +2,7 @@
 
 > Buy and sell items from your co-workers.
 
-![coshop-cover](https://user-images.githubusercontent.com/15898299/92945344-87f56980-f42b-11ea-98f5-32767a20ddfb.jpg)
+![coshop-cover](https://user-images.githubusercontent.com/15898299/92948655-153abd00-f430-11ea-8e95-1ae641b9740a.jpg)
 
 This project provides a marketplace for companies where all users registered with a company domain email can sell and buy things from other users of the same organization.
 
