@@ -9,9 +9,9 @@
       em <%= l @sale_post.created_at, format: :short %>
     </p>
   
-    <p class="mb-2">
-      <%= @sale_post.description %>
-    </p>
+    <div class="mb-2">
+      <%= simple_format(h(@sale_post.description)) %>
+    </div>
     <p class="text-sm mb-4">
       <span >Categoria: </span>
       <%= link_to @sale_post.category.name, @sale_post.category, class: "underline" %>

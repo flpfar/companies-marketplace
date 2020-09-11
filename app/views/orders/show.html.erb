@@ -8,9 +8,9 @@
         <%= @order.item_name %>
       </p>
     
-      <p class="text-sm">
-        <%= @order.item_description %>
-      </p>
+      <div class="text-sm">
+        <%= simple_format(h(@order.item_description)) %>
+      </div>
 
       <p class="mb-8 text-sm">
         <%= link_to 'Ver anúncio', @order.sale_post, class: 'underline hover:no-underline' if @order.in_progress? %>
