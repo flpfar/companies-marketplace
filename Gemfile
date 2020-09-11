@@ -47,8 +47,6 @@ group :development do
 
   # Generate Entity Relationship Diagram
   gem 'rails-erd'
-  # Generate fake data for seeds
-  gem 'faker', require: false
   # Outputs Formatter
   gem 'hirb'
   # Optimize queries

@@ -60,9 +60,6 @@ Rails.application.configure do
   # routes, locales, etc. This feature depends on the listen gem.
   config.file_watcher = ActiveSupport::EventedFileUpdateChecker
 
-  # To use faker lorem
-  config.i18n.enforce_available_locales = false
-
   config.after_initialize do
     Bullet.enable = true
     Bullet.alert = true

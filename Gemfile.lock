@@ -92,8 +92,6 @@ GEM
       http_parser.rb (~> 0.6.0)
     erubi (1.9.0)
     eventmachine (1.2.7)
-    faker (2.13.0)
-      i18n (>= 1.6, < 2)
     ffi (1.13.1)
     formatador (0.2.5)
     globalid (0.4.2)
@@ -291,7 +289,6 @@ DEPENDENCIES
   byebug
   capybara
   devise
-  faker
   guard-livereload
   hirb
   jbuilder (~> 2.7)
