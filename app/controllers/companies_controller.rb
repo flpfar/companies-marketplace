@@ -1,5 +1,6 @@
 class CompaniesController < ApplicationController
-  skip_before_action :authenticate_user!
+  before_action :must_be_admin
+
   def new
     @company = Company.new
   end
