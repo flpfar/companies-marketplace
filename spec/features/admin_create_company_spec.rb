@@ -1,9 +1,20 @@
 require 'rails_helper'
 
 feature 'Admin creates company' do
+  scenario 'must be admin' do
+    Company.create!(name: 'Company', domain: 'company.com')
+    user = User.create!(name: 'User', email: 'user@company.com', password: '123123')
+
+    login_as user, scope: :user
+    visit dashboard_path
+
+    expect(current_path).to eq(root_path)
+    expect(page).to have_content('Acesso negado')
+  end
+
   scenario 'successfully' do
     Company.create!(name: 'Admin Company', domain: 'admin.com')
-    admin = User.create!(name: 'Admin', email: 'admin@admin.com', password: '123123', role: :admin)
+    admin = User.create!(name: 'Admin', email: 'admin@admin.com', password: '123123', type: :admin)
 
     login_as admin, scope: :user
     visit dashboard_path
@@ -18,7 +29,7 @@ feature 'Admin creates company' do
 
   scenario 'without a name' do
     Company.create!(name: 'Admin Company', domain: 'admin.com')
-    admin = User.create!(name: 'Admin', email: 'admin@admin.com', password: '123123', role: :admin)
+    admin = User.create!(name: 'Admin', email: 'admin@admin.com', password: '123123', type: :admin)
 
     login_as admin, scope: :user
     visit dashboard_path
@@ -32,7 +43,7 @@ feature 'Admin creates company' do
 
   scenario 'with an invalid domain' do
     Company.create!(name: 'Admin Company', domain: 'admin.com')
-    admin = User.create!(name: 'Admin', email: 'admin@admin.com', password: '123123', role: :admin)
+    admin = User.create!(name: 'Admin', email: 'admin@admin.com', password: '123123', type: :admin)
 
     login_as admin, scope: :user
     visit dashboard_path
