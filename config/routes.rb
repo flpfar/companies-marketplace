@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  devise_for :admins
   devise_for :users, controllers: { registrations: 'registrations' }
   resources :users, only: [] do
     get 'profile', on: :member
@@ -24,6 +25,9 @@ Rails.application.routes.draw do
   resource :my_account, controller: :my_account, only: [:show] do
     get :history, on: :member
     get :sale_posts, on: :member
+  end
+  resource :dashboard, controller: :dashboard, only: [:show] do
+    resources :companies, only: [:new, :create]
   end
 
   root to: 'home#index'

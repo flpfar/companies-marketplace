@@ -1,0 +1,10 @@
+<%= form_with model: [:dashboard, @company], local: true do |f| %>
+  <% @company.errors.full_messages.each do |message| %>
+    <p><%= message %></p>
+  <% end %>
+  <%= f.label :name %>
+  <%= f.text_field :name %>
+  <%= f.label :domain %>
+  <%= f.text_field :domain %>
+  <%= f.submit 'Enviar' %>
+<% end %>
