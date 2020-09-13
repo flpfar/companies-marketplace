@@ -1,5 +1,6 @@
 class SalePostsController < ApplicationController
   before_action :user_must_be_enabled, only: [:new, :create]
+  before_action :user_must_be_the_author, only: [:edit, :update]
   before_action :user_must_be_seller_if_post_is_not_enabled, only: [:show]
 
   def show
@@ -18,7 +19,7 @@ class SalePostsController < ApplicationController
 
   def create
     @sale_post = SalePost.new(sale_post_params)
-    @categories = current_user.company.categories
+    @categories = current_user.company.categories.order(name: :asc)
 
     if @categories.empty?
       flash[:alert] = 'Não há categorias cadastradas na sua empresa. Contate o administrador'
@@ -26,6 +27,18 @@ class SalePostsController < ApplicationController
     end
 
     @sale_post.save ? redirect_to(@sale_post, notice: 'Anúncio criado com sucesso') : render(:new)
+  end
+
+  def edit
+    @categories = current_user.company.categories.order(name: :asc)
+  end
+
+  def update
+    if @sale_post.update(sale_post_params)
+      redirect_to @sale_post, notice: 'Anúncio atualizado com sucesso'
+    else
+      render :edit
+    end
   end
 
   def search
@@ -71,6 +84,11 @@ class SalePostsController < ApplicationController
     return if current_user.enabled?
 
     redirect_to root_path, alert: 'Para criar um anúncio seu perfil deve estar preenchido'
+  end
+
+  def user_must_be_the_author
+    @sale_post = SalePost.find(params[:id])
+    return redirect_to root_path, alert: 'Acesso negado' unless @sale_post.user == current_user
   end
 
   def user_must_be_seller_if_post_is_not_enabled

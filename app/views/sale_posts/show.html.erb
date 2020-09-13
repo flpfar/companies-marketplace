@@ -20,8 +20,9 @@
       <div class="text-3xl mb-4"><%= number_to_currency @sale_post.price %></div>
   
       <% if current_user == @sale_post.user && !@sale_post.sold? %>
-        <div class="seller-controllers">
+        <div class="seller-controllers flex items-center">
           <%= enable_disable_button(@sale_post) %>
+          <%= link_to 'Editar', edit_sale_post_path, class: 'ml-4 text-sm underline' %>
         </div>
       <% end %>
 

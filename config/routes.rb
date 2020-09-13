@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   resources :users, only: [] do
     get 'profile', on: :member
   end
-  resources :sale_posts, only: [:show, :new, :create] do
+  resources :sale_posts, only: [:show, :new, :create, :edit, :update] do
     resources :orders, only: [:create]
     resources :comments, only: [:create]
     post 'disable', on: :member
