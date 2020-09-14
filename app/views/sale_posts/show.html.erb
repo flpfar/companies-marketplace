@@ -1,5 +1,5 @@
 <section class="post-container text-gray-900 grid sm:grid-cols-1 lg:grid-cols-2 mb-12">
-  <div class="post-details h-screen/2 flex flex-col">
+  <div class="post-details flex flex-col">
     <h1 class="text-2xl font-bold mb-2">
       <%= @sale_post.title %>
     </h1>
@@ -22,7 +22,8 @@
       <% if current_user == @sale_post.user && !@sale_post.sold? %>
         <div class="seller-controllers flex items-center">
           <%= enable_disable_button(@sale_post) %>
-          <%= link_to 'Editar', edit_sale_post_path, class: 'ml-4 text-sm underline' %>
+          <%= link_to 'Editar', edit_sale_post_path(@sale_post), class: 'ml-4 text-sm underline' %>
+          <%= link_to 'Excluir', @sale_post, method: :delete, class: 'ml-4 text-sm underline' %>
         </div>
       <% end %>
 

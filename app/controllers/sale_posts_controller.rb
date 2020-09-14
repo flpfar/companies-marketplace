@@ -1,6 +1,6 @@
 class SalePostsController < ApplicationController
   before_action :user_must_be_enabled, only: [:new, :create]
-  before_action :user_must_be_the_author, only: [:edit, :update]
+  before_action :user_must_be_the_author, only: [:edit, :update, :destroy]
   before_action :user_must_be_seller_if_post_is_not_enabled, only: [:show]
 
   def show
@@ -69,6 +69,19 @@ class SalePostsController < ApplicationController
 
     @post.disabled!
     redirect_to sale_post_path(@post), notice: 'Anúncio desativado com sucesso'
+  end
+
+  def destroy
+    unless @sale_post.orders.empty?
+      flash[:alert] = 'Falha ao excluir anúncio. Este anúncio possui pedidos de compra'
+      return redirect_to sale_post_path(@sale_post)
+    end
+
+    if @sale_post.destroy
+      redirect_to root_path, notice: 'Anúncio excluído com sucesso'
+    else
+      redirect_to sale_post_path(@sale_post), 'Falha ao excluir anúncio. Tente novamente mais tarde'
+    end
   end
 
   private
