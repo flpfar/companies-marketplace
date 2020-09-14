@@ -1,6 +1,12 @@
 class CompaniesController < ApplicationController
   before_action :must_be_admin
 
+  def show
+    @company = Company.find(params[:id])
+    @categories = @company.categories.order(name: :asc)
+    @category = @company.categories.new
+  end
+
   def new
     @company = Company.new
   end

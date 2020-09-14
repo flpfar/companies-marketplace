@@ -1,0 +1,16 @@
+<ul>
+  <% @categories.each do |category| %>
+    <li>
+      <%= category.name %>
+    </li>
+  <% end %>
+</ul>
+
+<%= form_with model: @category, url: dashboard_company_categories_path(@company), local: true do |f| %>
+  <% @company.errors.full_messages.each do |message| %>
+    <p><%= message %></p>
+  <% end %>
+  <%= f.label :name %>
+  <%= f.text_field :name %>
+  <%= f.submit 'Enviar' %>
+<% end %>

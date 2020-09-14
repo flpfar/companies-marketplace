@@ -26,7 +26,9 @@ Rails.application.routes.draw do
     get :sale_posts, on: :member
   end
   resource :dashboard, controller: :dashboard, only: [:show] do
-    resources :companies, only: [:new, :create]
+    resources :companies, only: [:show, :new, :create] do
+      resources :categories, only: [:create]
+    end
   end
 
   root to: 'home#index'
