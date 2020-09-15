@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-feature 'User comments on sale post' do
+feature 'User ask question on sale post' do
   scenario 'sucessfully' do
     coke_company = Company.create!(name: 'Coke', domain: 'coke.com.br')
     eletro_category = Category.create!(name: 'Eletrodomésticos', company: coke_company)
@@ -14,13 +14,13 @@ feature 'User comments on sale post' do
 
     login_as user_diego, scope: :user
     visit sale_post_path(post.id)
-    within '.comments-container' do
-      fill_in 'comment_body', with: 'Faz por 250?'
+    within '.questions-container' do
+      fill_in 'question_body', with: 'Faz por 250?'
       click_on 'Enviar'
     end
 
-    expect(page).to have_content('Comentário criado com sucesso')
-    within '.comments-container' do
+    expect(page).to have_content('Pergunta enviada com sucesso')
+    within '.questions-container' do
       expect(page).to have_content('Diego')
       expect(page).to have_content('Faz por 250?')
     end
