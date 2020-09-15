@@ -66,10 +66,12 @@
     </div>
   <% end %>
 
-  <%= form_with model: [@sale_post, @question], locals: true, class: "w-full"  do |f| %>
-    <%= f.text_area :body, placeholder: 'Escreva uma pergunta...', class: "p-2 border border-gray-400 rounded text-sm block w-full" %>
-    <div class="text-right">
-      <%= f.submit 'Enviar', class: "bg-gray-900 text-white text-sm px-2 cursor-pointer hover:bg-gray-800" %>
-    </div>
+  <% unless current_user == @sale_post.user %>
+    <%= form_with model: [@sale_post, @question], locals: true, class: "question-form w-full"  do |f| %>
+      <%= f.text_area :body, placeholder: 'Escreva uma pergunta...', class: "p-2 border border-gray-400 rounded text-sm block w-full" %>
+      <div class="text-right">
+        <%= f.submit 'Enviar', class: "bg-gray-900 text-white text-sm px-2 cursor-pointer hover:bg-gray-800" %>
+      </div>
+    <% end %>
   <% end %>
 </div>
