@@ -13,9 +13,9 @@ class SalePostsController < ApplicationController
   def new
     @sale_post = SalePost.new
     @categories = Category.where(company_id: current_user.company_id)
-    if @categories.empty?
-      redirect_to root_path, alert: 'Não há categorias cadastradas na sua empresa. Contate o administrador'
-    end
+    return unless @categories.empty?
+
+    redirect_to root_path, alert: 'Não há categorias cadastradas na sua empresa. Contate o administrador'
   end
 
   def create
@@ -107,8 +107,6 @@ class SalePostsController < ApplicationController
 
   def user_must_be_seller_if_post_is_not_enabled
     @sale_post = SalePost.find(params[:id])
-    if !@sale_post.enabled? && @sale_post.user != current_user
-      redirect_to root_path, alert: 'Anúncio indisponível'
-    end
+    redirect_to root_path, alert: 'Anúncio indisponível' if !@sale_post.enabled? && @sale_post.user != current_user
   end
 end

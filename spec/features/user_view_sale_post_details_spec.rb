@@ -52,10 +52,10 @@ feature 'User views sale post details' do
       sale_post_refrigerator = SalePost.create!(title: 'Geladeira Brastemp', price: '800', user: user_bruno,
                                                 description: 'Geladeira semi nova, em ótimo estado',
                                                 category: eletro_category, status: :disabled)
-  
+
       login_as disabled_user, scope: :user
       visit sale_post_path(sale_post_refrigerator)
-  
+
       expect(current_path).not_to eq(sale_post_path(sale_post_refrigerator))
       expect(current_path).to eq(root_path)
       expect(page).to have_content('Anúncio indisponível')
