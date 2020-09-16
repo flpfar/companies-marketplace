@@ -9,7 +9,7 @@ feature 'User views order' do
     post = SalePost.create!(title: 'Fogão novo', description: 'Em ótimo estado', price: 140,
                             category: category, user: user_seller)
     order = Order.create!(item_name: post.title, item_description: post.description, sale_post: post,
-                          posted_price: post.price, status: :in_progress, buyer: user_buyer, seller: user_seller)
+                          posted_price: post.price, status: :in_progress, buyer: user_buyer)
     other_user = User.create!(name: 'Other', email: 'other@coke.com', password: '123123')
 
     login_as other_user, scope: :user
@@ -28,7 +28,7 @@ feature 'User views order' do
       post = SalePost.create!(title: 'Fogão novo', description: 'Em ótimo estado', price: 140,
                               category: category, user: user_seller)
       order = Order.create!(item_name: post.title, item_description: post.description, sale_post: post,
-                            posted_price: post.price, buyer: user_buyer, seller: user_seller)
+                            posted_price: post.price, buyer: user_buyer)
 
       login_as user_seller, scope: :user
       visit order_path(order)
@@ -48,8 +48,7 @@ feature 'User views order' do
       post = SalePost.create!(title: 'Fogão novo', description: 'Em ótimo estado', price: 140,
                               category: category, user: user_seller)
       order = Order.create!(item_name: post.title, item_description: post.description, sale_post: post,
-                            posted_price: post.price, buyer: user_buyer, seller: user_seller,
-                            status: :completed)
+                            posted_price: post.price, buyer: user_buyer, status: :completed)
 
       login_as user_seller, scope: :user
       visit order_path(order)
@@ -68,7 +67,7 @@ feature 'User views order' do
       post = SalePost.create!(title: 'Fogão novo', description: 'Em ótimo estado', price: 140,
                               category: category, user: user_seller)
       order = Order.create!(item_name: post.title, item_description: post.description, sale_post: post,
-                            posted_price: post.price, buyer: user_buyer, seller: user_seller)
+                            posted_price: post.price, buyer: user_buyer)
 
       login_as user_buyer, scope: :user
       visit order_path(order)

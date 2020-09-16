@@ -8,7 +8,7 @@ feature 'User writes messages on order' do
     buyer = User.create!(name: 'Buyer', email: 'buyer@abc.com', password: '123123')
     post = seller.sale_posts.create!(title: 'Playstation 4', description: 'Good as new', price: 900, category: games)
     order = post.orders.create!(item_name: post.title, item_description: post.description, posted_price: post.price,
-                                buyer: buyer, seller: seller)
+                                buyer: buyer)
 
     login_as buyer, scope: :user
     visit order_path(order.id)
@@ -31,7 +31,7 @@ feature 'User writes messages on order' do
     buyer = User.create!(name: 'Buyer', email: 'buyer@abc.com', password: '123123')
     post = seller.sale_posts.create!(title: 'Playstation 4', description: 'Good as new', price: 900, category: games)
     order = post.orders.create!(item_name: post.title, item_description: post.description, posted_price: post.price,
-                                buyer: buyer, seller: seller)
+                                buyer: buyer)
 
     login_as buyer, scope: :user
     visit order_path(order.id)
@@ -53,7 +53,7 @@ feature 'User writes messages on order' do
     buyer = User.create!(name: 'Buyer', email: 'buyer@abc.com', password: '123123')
     post = seller.sale_posts.create!(title: 'Playstation 4', description: 'Good as new', price: 900, category: games)
     order = post.orders.create!(item_name: post.title, item_description: post.description, posted_price: post.price,
-                                buyer: buyer, seller: seller, status: :completed)
+                                buyer: buyer, status: :completed)
 
     login_as buyer, scope: :user
     visit order_path(order.id)

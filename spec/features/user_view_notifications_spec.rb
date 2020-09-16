@@ -11,9 +11,9 @@ feature 'User views notifications' do
     post2 = seller.sale_posts.create!(title: 'Xbox One', price: 1000, description: 'Xbox one com 2 controles',
                                       category: category)
     Order.create!(item_name: post1.title, item_description: post1.description, sale_post: post1,
-                  posted_price: post1.price, status: :in_progress, buyer: buyer, seller: seller)
+                  posted_price: post1.price, status: :in_progress, buyer: buyer)
     Order.create!(item_name: post2.title, item_description: post2.description, sale_post: post2,
-                  posted_price: post2.price, status: :in_progress, buyer: buyer, seller: seller)
+                  posted_price: post2.price, status: :in_progress, buyer: buyer)
 
     login_as seller, scope: :user
     visit root_path
@@ -38,7 +38,7 @@ feature 'User views notifications' do
     post = seller.sale_posts.create!(title: 'Xbox One', price: 1000, description: 'Xbox one com 2 controles',
                                      category: category)
     Order.create!(item_name: post.title, item_description: post.description, sale_post: post,
-                  posted_price: post.price, status: :in_progress, buyer: buyer, seller: seller)
+                  posted_price: post.price, status: :in_progress, buyer: buyer)
 
     login_as seller, scope: :user
     visit root_path

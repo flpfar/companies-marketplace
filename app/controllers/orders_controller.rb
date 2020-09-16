@@ -5,8 +5,7 @@ class OrdersController < ApplicationController
   def create
     @sale_post = SalePost.find(params[:sale_post_id])
     @order = Order.new(item_name: @sale_post.title, item_description: @sale_post.description, sale_post: @sale_post,
-                       posted_price: @sale_post.price, status: :in_progress, buyer: current_user, 
-                       seller: @sale_post.user)
+                       posted_price: @sale_post.price, status: :in_progress, buyer: current_user)
     if @order.save
       redirect_to order_path(@order), notice: 'Solicitação de compra enviada. '\
                                                                       'Aguarde aprovação do vendedor'

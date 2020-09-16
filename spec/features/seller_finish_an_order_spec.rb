@@ -74,7 +74,7 @@ feature 'Seller finishes an order' do
     post = seller.sale_posts.create!(title: 'Xbox One', price: 1000, description: 'Xbox one com 2 controles',
                                      category: category)
     Order.create!(item_name: post.title, item_description: post.description, sale_post: post,
-                  posted_price: post.price, status: :in_progress, buyer: buyer, seller: seller)
+                  posted_price: post.price, status: :in_progress, buyer: buyer)
 
     login_as seller, scope: :user
     visit root_path

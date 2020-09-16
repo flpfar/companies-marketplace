@@ -26,7 +26,7 @@ feature 'User deletes sale_post' do
     buyer = User.create!(name: 'Buyer', email: 'buyer@coshop.com', password: '123123')
     post = user.sale_posts.create!(title: 'Xbox One', description: 'Muito bom', price: 700, category: category)
     post.orders.create!(item_name: post.title, item_description: post.description, posted_price: post.price,
-                        buyer: buyer, seller: user)
+                        buyer: buyer)
 
     login_as user, scope: :user
     visit sale_post_path(post)
