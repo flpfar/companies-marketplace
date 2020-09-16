@@ -44,6 +44,7 @@ This project provides a marketplace for companies where all users registered wit
 
 - Ruby - To install it, check the [official page](https://www.ruby-lang.org/en/documentation/installation/).
 - Rails - Check [this page](https://www.theodinproject.com/courses/ruby-on-rails/lessons/your-first-rails-application-ruby-on-rails) for more info.
+- Yarn - Check [here](https://classic.yarnpkg.com/en/docs/install/)
 
 ### Setup
 
@@ -53,13 +54,14 @@ In terminal:
 - Run the following commands:
 ```
 $ bundle install
+$ yarn
 $ rails db:create
 $ rails db:migrate
 ```
 
 **Sample data**
 
-This project contains a seeds file to provide sample data for a preview of the application. The seeds file creates a company with domain 'coshop.com', some categories and posts. After running the seeds, it is possible to 'Sign up' users with emails like 'user@coshop.com'.
+This project contains a seeds file to provide sample data for a preview of the application. The seeds file creates a company with domain 'coshop.com', some categories and posts. After running the seeds it is possible to 'Login' with the user 'master@coshop.com' and password '123123', or 'Sign up' users with email domains 'coshop.com' (e.g. 'user@coshop.com').
 
 - In order to use the seeds file, run in terminal: `$ rails db:seed `
 
@@ -68,8 +70,9 @@ This project contains a seeds file to provide sample data for a preview of the a
 - Create a company and a category for that company (each company has its own categories) through terminal: 
 ```
 $ rails console
-> Company.create(name: 'Company Name', domain: 'companydomain.com')
-> Company.first.categories.create(name: 'Some category')
+> company = Company.create(name: 'Company Name', domain: 'companydomain.com')
+> company.categories.create(name: 'Some category')
+> exit
 ```
 
 - Run `rails server` in terminal.
@@ -92,7 +95,7 @@ This project uses RSpec and Capybara for testing. In order to run the tests, typ
 
 - Admin dashboard
 - Wishlist
-- Report posts
+- Report irregular posts
 
 ## 👤 Author
 
