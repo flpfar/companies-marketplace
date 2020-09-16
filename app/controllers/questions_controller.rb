@@ -1,6 +1,11 @@
 class QuestionsController < ApplicationController
   def create
     @question = Question.new(question_params)
+
+    if @question.body.empty?
+      return redirect_to sale_post_path(params[:sale_post_id]), alert: 'Pergunta deve conter texto' 
+    end
+
     if @question.save
       flash[:notice] = 'Pergunta enviada com sucesso'
     else
