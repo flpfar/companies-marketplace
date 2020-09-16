@@ -4,7 +4,7 @@ class SalePostsController < ApplicationController
   before_action :user_must_be_seller_if_post_is_not_enabled, only: [:show]
 
   def show
-    @order_in_progress = current_user.post_order_in_progress(@sale_post)
+    @order_in_progress = current_user.buying_order_in_progress_at_sale_post(@sale_post)
     @questions = @sale_post.questions.includes([:user, :answer])
     @question = Question.new
     @answer = Answer.new

@@ -12,13 +12,13 @@ class User < ApplicationRecord
 
   validates :name, :birth_date, :role, :department, presence: true, on: :update
 
-  before_validation :assign_company_by_email
+  before_validation :assign_company_by_email, on: :create
 
   def enabled?
     name.present?
   end
 
-  def post_order_in_progress(post)
+  def buying_order_in_progress_at_sale_post(post)
     buy_orders.find_by(sale_post: post, status: :in_progress)
   end
 
