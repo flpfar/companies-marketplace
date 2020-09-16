@@ -1,0 +1,15 @@
+<div class="comment-item text-sm mb-4">
+  <header class="comment-header">
+    <% unless author %>
+      <%= link_to comment.user.name, profile_user_path(comment.user), class: "font-bold" %>
+      <span class="text-xs text-gray-800"><%= comment.user.department %></span>
+    <% else %>
+      <%= link_to author.name, profile_user_path(author), class: "font-bold" %>
+      <span class="text-xs text-gray-800"><%= author.department %></span>
+    <% end %>
+  </header>
+  <p class="comment-body">
+    <%= comment.body %>
+    <span class="text-xs text-gray-600 ml-1"><%= l comment.created_at, format: :short %></span>
+  </p>
+</div>

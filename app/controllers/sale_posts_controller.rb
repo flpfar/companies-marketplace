@@ -5,8 +5,9 @@ class SalePostsController < ApplicationController
 
   def show
     @order_in_progress = current_user.post_order_in_progress(@sale_post)
-    @questions = @sale_post.questions.includes([:user])
+    @questions = @sale_post.questions.includes([:user, :answer])
     @question = Question.new
+    @answer = Answer.new
   end
 
   def new

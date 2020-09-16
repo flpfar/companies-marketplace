@@ -5,7 +5,9 @@ Rails.application.routes.draw do
   end
   resources :sale_posts, only: [:show, :new, :create, :edit, :destroy, :update] do
     resources :orders, only: [:create]
-    resources :questions, only: [:create]
+    resources :questions, only: [:create] do
+      resources :answers, only: [:create]
+    end
     post 'disable', on: :member
     post 'enable', on: :member
     get 'search', on: :collection

@@ -49,25 +49,34 @@
 </section>
 
 <div class="questions-container">
-  <h2 class="text-xl font-bold mb-2">Perguntas</h2>
+  <h2 class="text-xl font-bold mb-2">Perguntas e Respostas</h2>
 
-  <%= 'Não há perguntas' if @questions.empty? %>
+  <% if @questions.empty? %>
+    <p class="mb-2 italic text-sm">Não há perguntas até o momento.</p>
+  <% end %>
 
   <% @questions.each do |question| %>
-    <div class="question-item text-sm mb-4">
-      <header class="question-header">
-        <%= link_to question.user.name, profile_user_path(question.user), class: "font-bold" %>
-        <span class="text-xs text-gray-800"><%= question.user.department %></span>
-      </header>
-      <p class="question-body">
-        <%= question.body %>
-        <span class="text-xs text-gray-600 ml-1"><%= l question.created_at, format: :short %></span>
-      </p>
+    <div data-question="<%= question.id %>">
+      <%= render partial: 'comment-item', locals: { comment: question, author: false } %>
+      <% if question.answer %>
+        <div class="pl-12">
+          <%= render partial: 'comment-item', locals: { comment: question.answer, author: @sale_post.user } %>
+        </div>
+      <% else %>
+        <% if current_user == @sale_post.user %>
+          <%= form_with model: [@sale_post, question, @answer], local: true, class: "answer-form w-full"  do |f| %>
+            <%= f.text_area :body, placeholder: 'Escreva uma resposta...', class: "p-2 border border-gray-400 rounded text-sm block w-full" %>
+            <div class="text-right">
+              <%= f.submit 'Enviar', class: "bg-gray-900 text-white text-sm px-2 cursor-pointer hover:bg-gray-800" %>
+            </div>
+          <% end %>
+        <% end %>
+      <% end %>
     </div>
   <% end %>
 
   <% unless current_user == @sale_post.user %>
-    <%= form_with model: [@sale_post, @question], locals: true, class: "question-form w-full"  do |f| %>
+    <%= form_with model: [@sale_post, @question], local: true, class: "question-form w-full"  do |f| %>
       <%= f.text_area :body, placeholder: 'Escreva uma pergunta...', class: "p-2 border border-gray-400 rounded text-sm block w-full" %>
       <div class="text-right">
         <%= f.submit 'Enviar', class: "bg-gray-900 text-white text-sm px-2 cursor-pointer hover:bg-gray-800" %>
