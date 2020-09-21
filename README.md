@@ -111,7 +111,7 @@ This project uses RSpec and Capybara for testing. In order to run the tests, typ
 
 Contributions, issues and feature requests are welcome!
 
-Feel free to check the [issues page](https://github.com/flpfar/world-data/issues).
+Feel free to check the [issues page](https://github.com/flpfar/companies-marketplace/issues).
 
 
 ## Show your support
