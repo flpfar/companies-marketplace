@@ -3,10 +3,10 @@ require 'rails_helper'
 describe 'Sale post management' do
   context 'index' do
     it 'renders enabled sale posts in company' do
-      company = Company.create!(name: 'Company', domain: 'company.com')
-      games_category = company.categories.create!(name: 'Games')
-      eletro_category = company.categories.create!(name: 'Eletrodomésticos')
-      user = User.create!(name: 'User', email: 'user@company.com', password: '123123')
+      company = FactoryBot.create(:company)
+      games_category = FactoryBot.create(:category, company: company)
+      eletro_category = FactoryBot.create(:category, company: company, name: 'Eletro')
+      user = FactoryBot.create(:user)
       user.sale_posts.create!(title: 'Playstation 4', description: 'Novo na caixa', category: games_category,
                               price: 1200)
       user.sale_posts.create!(title: 'Xbox One', description: 'Recondicionado', category: games_category,
