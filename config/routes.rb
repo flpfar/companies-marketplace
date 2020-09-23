@@ -33,5 +33,13 @@ Rails.application.routes.draw do
     end
   end
 
+  namespace :api do
+    namespace :v1 do
+      resources :company, only: [] do
+        resources :sale_posts, only: [:index]
+      end
+    end
+  end
+
   root to: 'home#index'
 end
