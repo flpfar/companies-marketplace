@@ -1,18 +1,18 @@
 <div class="login-container flex flex-col items-center justify-center h-screen">
   
   <%= image_tag "logo-dark.png", class: " mb-2" %>
-  <div class="login border bg-white border-gray-400 p-8 text-gray-900 rounded">
+  <div class="login border bg-white border-gray-400 p-8 text-gray-900 rounded w-full max-w-md">
     <h2 class="text-center font-bold text-gray-900 text-lg">Entrar</h2>
     
     <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
       <div class="field mt-4">
         <%= f.label :email %><br />
-        <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: 'Email', class: "p-2 border border-gray-400 rounded" %>
+        <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: 'Email', class: "p-2 border border-gray-400 rounded w-full" %>
       </div>
     
       <div class="field mt-4">
         <%= f.label :password %><br />
-        <%= f.password_field :password, autocomplete: "current-password", placeholder: 'Senha', class: "p-2 border border-gray-400 rounded" %>
+        <%= f.password_field :password, autocomplete: "current-password", placeholder: 'Senha', class: "p-2 border border-gray-400 rounded w-full" %>
       </div>
     
       <% if devise_mapping.rememberable? %>
