@@ -36,7 +36,11 @@ This project provides a marketplace for companies where all users registered wit
 
 ## Live Demo
 
-- In progress
+[Co-shop Demo](https://co-shop.herokuapp.com/)
+
+- Available only in Portuguese for now
+- Images not working (free server limitation)
+- Sign up with any email @coshop.com in order to test it
 
 ## Getting Started
 
